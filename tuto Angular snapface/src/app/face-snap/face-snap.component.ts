@@ -1,39 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgStyle, NgClass } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
+import { UpperCasePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-face-snap',
+  selector: 'app-face-snap-list',
   standalone: true,
-  imports: [
-    NgStyle,
-    NgClass
-  ],
-  templateUrl: './face-snap.component.html',
-  styleUrl: './face-snap.component.scss',
+  imports: [UpperCasePipe],
+  templateUrl: './face-snap-list.component.html',
+  styleUrl: './face-snap-list.component.scss',
 })
-export class FaceSnapComponent implements OnInit {
+export class FaceSnapComponent {
   @Input() faceSnap!: FaceSnap;
-  snapButtonText!: string;
-  userHasSnapped!: boolean;
 
-  // Pour initialiser ces propriétés en suivant les best practices Angular on utilise l'interface OnInit
-  // La méthode  ngOnInit()  est appelée automatiquement par Angular au moment de la création de chaque instance du component. Elle permet notamment d'initialiser des propriétés.
-  ngOnInit(): void {
-    this.snapButtonText = 'Oh Snap!';
-    this.userHasSnapped = false;
-    
+  constructor(private router: Router) {
+
   }
 
-  onSnap(): void {
-    if (this.userHasSnapped) {
-      this.faceSnap.removeSnap();
-      this.snapButtonText = "Oh Snap!";
-      this.userHasSnapped = false;
-    } else {
-      this.faceSnap.addSnap();
-      this.snapButtonText = 'Oops, unSnap!';
-      this.userHasSnapped = true;
-    }
+  onViewFaceSnap() {
+    this.router.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
   }
 }

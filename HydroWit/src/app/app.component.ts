@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LandingPageComponent],
+  imports: [RouterOutlet, LandingPageComponent, SearchBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

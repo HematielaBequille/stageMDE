@@ -5,7 +5,7 @@
 ## HydroWit
 
 ## Tutoriels Angular
-[OpenClassrooms: Débutez avec Angular: SnapFace](https://openclassrooms.com/fr/courses/7471261-debutez-avec-angular)
+[OpenClassrooms: Débutez avec Angular: SnapFace](https://openclassrooms.com/fr/courses/7471261-debutez-avec-angular)\
 [OpenClassrooms: Complétez vos connaissances sur Angular: SnapFace2](https://openclassrooms.com/fr/courses/7471271-completez-vos-connaissances-sur-angular)
 
 ## Tutoriel Python

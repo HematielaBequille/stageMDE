@@ -49,7 +49,11 @@
     height: 100%;
   }
 
-  mat-icon {
+  .header-nav-icon {
     font-size: 1.8em;
+  }
+
+  button[mat-menu-item] {
+    font-size: 1.2em; // Ajuste la taille de la police des éléments du menu
   }
 }

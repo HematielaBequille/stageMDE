@@ -1,21 +1,38 @@
-<button
-  mat-icon-button
-  [matMenuTriggerFor]="menu"
-  aria-label="Example icon-button with a menu"
+<header
+  class="sticky-header"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
 >
-  <mat-icon>more_vert</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>dialpad</mat-icon>
-    <span>item1</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon>voicemail</mat-icon>
-    <span>item2</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>notifications_off</mat-icon>
-    <span>item3</span>
-  </button>
-</mat-menu>
+  <div class="div-header">
+    <nav fxLayout="row" fxLayoutAlign="center center">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span>item1</span>
+        </button>
+        <button mat-menu-item>
+          <span>item2</span>
+        </button>
+        <button mat-menu-item>
+          <span>item3</span>
+        </button>
+      </mat-menu>
+    </nav>
+
+    <h1 class="title">HydroWit</h1>
+
+    <div class="div-logo">
+      <img
+        src="assets/images/logo-mde-rgb.png"
+        alt="logo de la maison de l'estuaire"
+        class="logo"
+      />
+    </div>
+  </div>
+</header>

@@ -1,4 +1,4 @@
-<div class="grid-container">
+<!--<div class="grid-container">
   <h1 class="mat-h1">blabla</h1>
   <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile *ngFor="let module of modules">
@@ -12,4 +12,24 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+</div>-->
+
+<div class="grid-container" fxLayout="column" fxLayoutGap="20px">
+  <h1 class="mat-h1">blabla</h1>
+
+  <!-- Layout Flex en colonne -->
+  <div fxLayout="column" fxLayoutGap="20px">
+    <div *ngFor="let module of modules" fxFlex="100%">
+      <mat-card class="">
+        <mat-card-header>
+          <mat-card-title>{{ module.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>Nom du module ici</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>
+
+

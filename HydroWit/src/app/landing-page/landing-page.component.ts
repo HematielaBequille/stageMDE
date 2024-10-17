@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ModulesService } from '../services/modules.service';
 import { Router } from '@angular/router';
 import { Module } from '../models/module.model';
+import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 
 @Component({
   selector: 'app-landing-page',
@@ -22,6 +23,7 @@ import { Module } from '../models/module.model';
     MatButtonModule,
     MatCardModule,
     CommonModule,
+    FlexLayoutModule
   ],
 })
 export class LandingPageComponent implements OnInit {

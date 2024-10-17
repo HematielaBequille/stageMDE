@@ -4,13 +4,12 @@
   fxLayoutAlign="space-between center"
 >
   <div class="div-header">
-    <nav fxLayout="row" fxLayoutAlign="center center">
+    <nav class="header-nav" fxLayout="row" fxLayoutAlign="center center">
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with a menu"
-      >
-        <mat-icon>menu</mat-icon>
+        aria-label="Example icon-button with a menu">
+        <mat-icon class="header-nav-icon">menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="closeMenu()">

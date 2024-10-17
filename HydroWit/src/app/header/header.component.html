@@ -13,6 +13,10 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="closeMenu()">
+          <mat-icon>close</mat-icon>Fermer
+        </button>
+        <mat-divider></mat-divider>
         <button mat-menu-item>
           <span>Page d'accueil</span>
         </button>
@@ -31,7 +35,7 @@
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>
-          <span>Déconnexion</span>
+          Déconnexion
         </button>
       </mat-menu>
     </nav>

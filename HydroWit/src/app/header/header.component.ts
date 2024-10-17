@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,13 +18,20 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
+    MatMenuTrigger,
     CommonModule
   ],
 })
 export class HeaderComponent {
+  @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger; //
+  
   logout() {
     localStorage.removeItem('userToken'); // supprimer le token d'authentification du stockage local
     // this.router.navigate(['/login']);
     console.log('Déconnexion réussie');
+  }
+
+  closeMenu() {
+    this.menuTrigger.closeMenu();
   }
 }

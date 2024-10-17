@@ -14,13 +14,24 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>
-          <span>item1</span>
+          <span>Page d'accueil</span>
         </button>
         <button mat-menu-item>
-          <span>item2</span>
+          <span>Module Données</span>
         </button>
         <button mat-menu-item>
-          <span>item3</span>
+          <span>Module Export</span>
+        </button>
+        <button mat-menu-item>
+          <span>Module Saisie</span>
+        </button>
+        <button mat-menu-item>
+          <span>Module Synthèse</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Déconnexion</span>
         </button>
       </mat-menu>
     </nav>

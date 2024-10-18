@@ -57,3 +57,19 @@ body {
     height: auto !important; //
   }
 }
+
+@media (min-width: 1600px) {
+  [mat-menu-item] > span > span {
+    font-size: 1.6em;
+  }
+
+  button[mat-menu-item] > mat-icon {
+    font-size: 36px;
+    width: 36px !important; // trouver pourquoi ces 2 règles ne passent pas au dessus de celles de Material
+    height: auto !important; //
+  }
+
+  .mat-mdc-menu-panel {
+    width: 280px !important; // trouver pourquoi cette règle ne passe pas au dessus de celle de Material
+  }
+}

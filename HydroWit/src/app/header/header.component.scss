@@ -57,3 +57,9 @@
     width: 210px;
   }
 }
+
+@media (min-width: 1600px) {
+  button[mat-menu-item] {
+    width: 240px;
+  }
+}

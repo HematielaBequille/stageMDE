@@ -19,8 +19,9 @@
 
 .title {
   display: flex;
-  font-size: xx-large;
+  font-size: 2em;
   margin: 0 1.5em 0 1.5em;
+  letter-spacing: 2px
 }
 
 .div-logo {
@@ -56,10 +57,18 @@
   button[mat-menu-item] {
     width: 210px;
   }
+
+  .title {
+    letter-spacing: 4px;
+  }
 }
 
 @media (min-width: 1600px) {
   button[mat-menu-item] {
     width: 240px;
+  }
+
+  .title {
+    letter-spacing: 6px;
   }
 }

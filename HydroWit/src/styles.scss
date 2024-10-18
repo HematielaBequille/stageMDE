@@ -46,6 +46,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.mdc-label {
+  font-size: 1.2em;
+}
+
 @media (min-width: 900px) {
   [mat-menu-item] > span > span {
     font-size: 1.4em;

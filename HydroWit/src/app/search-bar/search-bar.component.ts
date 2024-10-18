@@ -5,7 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-search-bar',
@@ -16,6 +19,10 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatCheckboxModule,
     MatIconModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   templateUrl: './search-bar.component.html',
@@ -26,4 +33,10 @@ export class SearchBarComponent {
     console.log('Formulaire envoyé ', form);
     console.log('Données envoyées: ', form.value);
   }
+
+  stations = new FormControl('');
+  stationList: string[] = ['station1', 'station2', 'station3'];
+
+  sensors = new FormControl('');
+  sensorList: string[] = ['capteur1', 'capteur2', 'capteur3'];
 }

@@ -8,23 +8,23 @@ export class ModulesService {
     return [
       {
         id: 1,
-        title: 'module1',
-        description: 'le module 1',
+        title: 'Module Données',
+        description: '',
       },
       {
         id: 2,
-        title: 'module2',
-        description: 'le module 2',
+        title: 'Module Export',
+        description: '',
       },
       {
         id: 3,
-        title: 'module3',
-        description: 'le module 3',
+        title: 'Module Saisie',
+        description: '',
       },
       {
         id: 4,
-        title: 'module4',
-        description: 'le module 4',
+        title: 'Module Synthèse',
+        description: '',
       },
     ];
   }

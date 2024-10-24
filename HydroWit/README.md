@@ -5,6 +5,8 @@ npm i @angular/cli
 npm i express
 ```
 
+`node app.js` pour démarrer le serveur web Express
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 
 ## Development server

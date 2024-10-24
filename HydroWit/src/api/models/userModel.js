@@ -1,9 +1,9 @@
 // Un modèle basique d'utilisateur
 class User {
-    constructor(id, name, firstName, rank) {
+    constructor(id, name, firstname, rank) {
       this.id = id;
       this.name = name;
-      this.firstName = firstName;
+      this.firstName = firstname;
       this.rank = rank;
     }
   }

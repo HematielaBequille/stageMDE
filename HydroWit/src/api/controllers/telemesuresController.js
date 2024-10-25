@@ -16,3 +16,18 @@ exports.getAllStations = async (req, res) => {
       );
   }
 };
+
+//GET - Récupérer tous les capteurs d'une station telemesure - asynchrone
+exports.getAllSensorsOfOneStation = async (req, res) => {
+    try {
+        const result = await db.query("");
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res
+          .status(500)
+          .send(
+            "Erreur du serveur lors de la récupération de tout les capteurs de la station de télémesure"
+          );
+      }
+}

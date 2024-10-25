@@ -12,6 +12,7 @@ router.get("/:id", userController.getUserById);
 router.post("/", userController.createUser);
 
 // PUT - Modifier un utilisateur en particulier
+router.put('/:id', userController.modifyUser);
 
 // DELETE - Supprimer un utilisateur en particulier
 

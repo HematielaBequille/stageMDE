@@ -1,6 +1,9 @@
 // base de données distante
 const db = require("../db");
 
+// user model
+const User = require("../models/userModel");
+
 // GET - Récupérer tous les utilisateurs - asynchrone
 exports.getAllUsers = async (req, res) => {
   try {
@@ -29,12 +32,14 @@ exports.getUserById = (req, res) => {
 // POST - Créer un utilisateur - asynchrone
 exports.createUser = async (req, res) => {
   const { name, firstName, rank } = req.body;
+  const newUser = new User(null, name, firstName, rank);
   try {
     const result = await db.query(
       "INSERT INTO users (name, firstname, rank) VALUES ($1, $2, $3) RETURNING *",
-      [name, firstName, rank]
+      [newUser.name, newUser.firstName, newUser.rank]
     );
-    res.status(201).json(result.rows[0]);
+    newUser.id = result.rows[0].id;
+    res.status(201).json(newUser);
   } catch (err) {
     console.error(err);
     res
@@ -57,7 +62,13 @@ exports.modifyUser = async (req, res) => {
       return res.status(404).send("Utilisateur non trouvé");
     }
 
-    res.status(200).json(result.rows[0]);
+    const updatedUser = new User(
+      result.rows[0].id,
+      result.rows[0].name,
+      result.rows[0].firstname,
+      result.rows[0].rank
+    );
+    res.status(200).json(updatedUser);
   } catch (err) {
     console.error(err);
     res

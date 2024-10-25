@@ -20,12 +20,32 @@ exports.getAllUsers = async (req, res) => {
 };
 
 // GET - Récupérer un utilisateur en particulier
-exports.getUserById = (req, res) => {
-  const user = users.find((u) => u.id === parseInt(req.params.id));
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404).send("Utilisateur non trouvé");
+exports.getUserById = async (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  // on vérifie si l'id est bien un nombre entier
+  if (isNaN(userId)) {
+    return res.status(400).send("ID invalide");
+  }
+
+  // on essaie la requête
+  try {
+    const result = await db.query("SELECT * FROM users WHERE id = $1", [
+      userId,
+    ]);
+    const user = result.rows[0];
+
+    // si l'utilisateur existe ou non
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).send("Utilisateur non trouvé");
+    }
+
+    // on attrape l'erreur
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Erreur du serveur");
   }
 };
 

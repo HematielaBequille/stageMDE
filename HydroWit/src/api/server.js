@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
+//const jobRoutes = require("./routes/jobRoutes");
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,7 @@ app.use(cors());
 
 // Routes
 app.use("/users", userRoutes); // Utilise les routes définies pour les utilisateurs
+//app.use("/jobs", jobRoutes);
 
 // Démarrer le serveur
 app.listen(port, () => {

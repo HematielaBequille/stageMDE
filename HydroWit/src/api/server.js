@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
 //const jobRoutes = require("./routes/jobRoutes");
+const allRoutes = require("./routes/allRoutes");
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,7 @@ app.use(cors());
 // Routes
 app.use("/users", userRoutes); // Utilise les routes définies pour les utilisateurs
 //app.use("/jobs", jobRoutes);
+app.use("/field/all", allRoutes);
 
 // Démarrer le serveur
 app.listen(port, () => {

@@ -15,5 +15,6 @@ router.post("/", userController.createUser);
 router.put('/:id', userController.modifyUser);
 
 // DELETE - Supprimer un utilisateur en particulier
+router.delete('/:id', userController.deleteUser);
 
 module.exports = router;

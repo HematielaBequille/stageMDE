@@ -1,9 +1,3 @@
-// Simulons une base de données en mémoire
-let users = [
-  { id: 1, name: "Alice", firstName: "bla", rank: "ble" },
-  { id: 2, name: "Bob", firstName: "bla", rank: "ble" },
-];
-
 // base de données distante
 const db = require("../db");
 
@@ -20,8 +14,6 @@ exports.getAllUsers = async (req, res) => {
         "Erreur du serveur lors de la récupération de tous les utilisateurs"
       );
   }
-
-  //res.json(users);
 };
 
 // GET - Récupérer un utilisateur en particulier
@@ -75,3 +67,21 @@ exports.modifyUser = async (req, res) => {
 };
 
 // DELETE - Supprimer un utilisateur en particulier
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await db.query(
+      "DELETE FROM users WHERE id = $1 RETURNING *",
+      [id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).send("Utilisateur non trouvé");
+    }
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .send("Erreur du serveur lors de la suppression de l'utilisateur");
+  }
+};

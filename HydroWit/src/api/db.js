@@ -1,12 +1,19 @@
-const pgp = require('pg-promise')();  // Initialisation de pg-promise
+const { Pool } = require("pg");
 
-// Configuration de la connexion PostgreSQL
-const db = pgp({
-  host: '192.168.96.204',
+// Crée une instance du pool de connexions
+const pool = new Pool({
+  user: "hydrowit",
+  host: "192.168.96.204",
+  database: "hydraulique",
+  password: "password",
   port: 5432,
-  database: 'hydraulique',
-  user: 'postgres',
-  password: 'password',
 });
 
-module.exports = db;
+// Fonction pour exécuter des requêtes SQL
+const query = (text, params) => {
+  return pool.query(text, params);
+};
+
+module.exports = {
+  query,
+};

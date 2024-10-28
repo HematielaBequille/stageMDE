@@ -9,11 +9,12 @@ import { ModulesService } from '../services/modules.service';
 import { Router } from '@angular/router';
 import { Module } from '../models/module.model';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss',
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
   standalone: true,
   imports: [
     AsyncPipe,
@@ -23,10 +24,11 @@ import { FlexLayoutModule } from '@ngbracket/ngx-layout';
     MatButtonModule,
     MatCardModule,
     CommonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HeaderComponent
   ],
 })
-export class LandingPageComponent implements OnInit {
+export class HomeComponent implements OnInit {
   modules: Module[] = [];
 
   constructor(private modulesService: ModulesService, private router: Router) {}

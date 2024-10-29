@@ -13,10 +13,10 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'back-office', component: BackOfficeComponent },
-  { path: 'data-module', component: DataModuleComponent },
-  { path: 'export-module', component: ExportModuleComponent },
-  { path: 'entry-module', component: EntryModuleComponent },
-  { path: 'synthesis-module', component: SynthesisModuleComponent },
+  { path: 'modules/data/:id', component: DataModuleComponent },
+  { path: 'modules/export/:id', component: ExportModuleComponent },
+  { path: 'modules/entry/:id', component: EntryModuleComponent },
+  { path: 'modules/synthesis/:id', component: SynthesisModuleComponent },
   { path: '**', redirectTo: 'home' } // pour rediriger les routes inconnues vers la page d'accueil
 ];
 

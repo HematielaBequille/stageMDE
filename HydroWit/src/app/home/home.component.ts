@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { Module } from '../models/module.model';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 import { HeaderComponent } from '../header/header.component';
+import { HydrowitService } from '../services/hydrowit.service';
+
 
 @Component({
   selector: 'app-home',
@@ -25,15 +27,26 @@ import { HeaderComponent } from '../header/header.component';
     MatCardModule,
     CommonModule,
     FlexLayoutModule,
-    HeaderComponent
+    HeaderComponent,
+
   ],
 })
 export class HomeComponent implements OnInit {
+  users: any[] = [];
   modules: Module[] = [];
 
-  constructor(private modulesService: ModulesService, private router: Router) {}
+  constructor(private modulesService: ModulesService, private router: Router, private hydrowitService: HydrowitService) { }
 
   ngOnInit(): void {
+    console.log("test");
+    this.hydrowitService.getUsers().subscribe(
+      (data: any) => {
+        this.users = data;
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des utilisateurs', error);
+      }
+    );
     this.modules = this.modulesService.getModules();
     console.log('landing page initialisée');
   }

@@ -10,21 +10,25 @@ export class ModulesService {
       id: '1',
       title: 'Module Données',
       description: 'bla',
+      path: 'data'
     },
     {
       id: '2',
       title: 'Module Export',
-      description: 'bla'
+      description: 'bla',
+      path: 'export'
     },
     {
       id: '3',
       title: 'Module Saisie',
-      description: 'bla'
+      description: 'bla',
+      path: 'entry'
     },
     {
       id: '4',
       title: 'Module Synthèse',
-      description: 'bla'
+      description: 'bla',
+      path: 'synthesis'
     },
   ];
 

@@ -55,26 +55,6 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToModule(module: Module): void {
-    let modulePath = '';
-
-    switch (module.title) {
-      case 'Module Données':
-        modulePath = 'data';
-        break;
-      case 'Module Export':
-        modulePath = 'export';
-        break;
-      case 'Module Saisie':
-        modulePath = 'entry';
-        break;
-      case 'Module Synthèse':
-        modulePath = 'synthesis';
-        break;
-      default:
-        console.error('Type de module inconnu');
-        return;
-    }
-
-    this.router.navigate([`/modules/${modulePath}`, module.id]);
+    this.router.navigate([`/modules/${module.path}/${module.id}`]);
   }
 }

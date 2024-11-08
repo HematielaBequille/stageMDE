@@ -20,17 +20,8 @@
         <button mat-menu-item>
           <span>Page d'accueil</span>
         </button>
-        <button mat-menu-item>
-          <span>Module Données</span>
-        </button>
-        <button mat-menu-item>
-          <span>Module Export</span>
-        </button>
-        <button mat-menu-item>
-          <span>Module Saisie</span>
-        </button>
-        <button mat-menu-item>
-          <span>Module Synthèse</span>
+        <button *ngFor="let module of modules" mat-menu-item>
+          <span>{{ module.title }}</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">

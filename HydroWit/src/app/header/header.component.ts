@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
+import { Module } from '../models/module.model';
+import { ModulesService } from '../services/modules.service';
 
 @Component({
   selector: 'app-header',
@@ -20,12 +22,21 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatDividerModule,
     MatMenuTrigger,
-    CommonModule
+    CommonModule,
   ],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger; //
-  
+
+  modules: Module[] = [];
+
+  constructor(private modulesService: ModulesService) {}
+
+  ngOnInit(): void {
+    this.modules = this.modulesService.getModules();
+    console.log('header initialisé');
+  }
+
   logout() {
     localStorage.removeItem('userToken'); // supprimer le token d'authentification du stockage local
     // this.router.navigate(['/login']);

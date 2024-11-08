@@ -18,7 +18,7 @@
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item>
-          <span>Page d'accueil</span>
+          <a class="" routerLink="/accueil" routerLinkActive=""><span>Page d'accueil</span></a>
         </button>
         <button *ngFor="let module of modules" mat-menu-item>
           <span>{{ module.title }}</span>

@@ -9,6 +9,7 @@ import { ModulesService } from '../services/modules.service';
 import { Router } from '@angular/router';
 import { Module } from '../models/module.model';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -23,7 +24,8 @@ import { FlexLayoutModule } from '@ngbracket/ngx-layout';
     MatButtonModule,
     MatCardModule,
     CommonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HeaderComponent
   ],
 })
 export class LandingPageComponent implements OnInit {

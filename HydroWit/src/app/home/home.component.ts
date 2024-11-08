@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
 import { Module } from '../models/module.model';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 import { HeaderComponent } from '../header/header.component';
+import { HydrowitService } from '../services/hydrowit.service';
+
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss',
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
   standalone: true,
   imports: [
     AsyncPipe,
@@ -28,13 +30,31 @@ import { HeaderComponent } from '../header/header.component';
     HeaderComponent
   ],
 })
-export class LandingPageComponent implements OnInit {
+export class HomeComponent implements OnInit {
+  users: any[] = [];
   modules: Module[] = [];
 
-  constructor(private modulesService: ModulesService, private router: Router) {}
+  constructor(private modulesService: ModulesService, private router: Router, private hydrowitService: HydrowitService) { }
 
   ngOnInit(): void {
+    console.log("test");
+    // on récupère les utilisateurs (tests)
+    this.hydrowitService.getUsers().subscribe(
+      (data: any) => {
+        this.users = data;
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des utilisateurs', error);
+      }
+    );
+
+    // on récupère la liste des modules
     this.modules = this.modulesService.getModules();
+
     console.log('landing page initialisée');
+  }
+
+  navigateToModule(module: Module): void {
+    this.router.navigate([`/modules/${module.path}/${module.id}`]);
   }
 }

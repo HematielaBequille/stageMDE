@@ -13,6 +13,8 @@ const port = 3000;
 // Middleware pour traiter les requêtes en JSON
 //app.use(express.json());
 app.use(bodyParser.json());
+
+// Middleware pour activer CORS -> a creuser
 app.use(cors());
 
 // Routes

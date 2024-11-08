@@ -1,5 +1,6 @@
 export class Module {
-    id!: number;
+    id!: string;
     title!: string;
     description!: string;
+    path!: string;
   }

@@ -1,9 +1,12 @@
 <app-header></app-header>
+<!--<div *ngFor="let user of users">
+  <p>{{ user.name }} - {{ user.firstname }} - {{ user.rank }}</p>
+</div>-->
 <div class="grid-container">
   <h1 class="title">blabla</h1>
   <div class="module-container">
     <div *ngFor="let module of modules" class="module-card">
-      <mat-card class="">
+      <mat-card class="" (click)="navigateToModule(module)">
         <mat-card-header>
           <mat-card-title>{{ module.title }}</mat-card-title>
         </mat-card-header>
@@ -14,3 +17,4 @@
     </div>
   </div>
 </div>
+

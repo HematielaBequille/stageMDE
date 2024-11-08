@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div *ngIf="module">
+    <h2>Détails du Module : {{ module.title }}</h2>
+    <p><strong>Description :</strong> {{ module.description }}</p>
+</div>
+<div *ngIf="!module">
+    <p>Le module n'a pas été trouvé.</p>
+</div>

@@ -5,7 +5,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { HydrowitService } from './services/hydrowit.service';
 
 
 @Component({
@@ -24,18 +23,6 @@ import { HydrowitService } from './services/hydrowit.service';
 })
 export class AppComponent implements OnInit {
   title = 'hydrowit';
-  users: any[] = [];
 
-  constructor(private hydrowitService: HydrowitService) { }
-
-  ngOnInit(): void {
-    this.hydrowitService.getAllUsers().subscribe(
-      (data) => {
-        this.users = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des utilisateurs', error);
-      }
-    );
-  }
+  ngOnInit(): void { }
 }

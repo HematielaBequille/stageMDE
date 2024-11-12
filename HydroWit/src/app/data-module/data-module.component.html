@@ -6,3 +6,7 @@
 <div *ngIf="!module">
     <p>Le module n'a pas été trouvé.</p>
 </div>
+
+<div *ngFor="let station of stations">
+    <p>{{ station.id_atm }}</p>
+</div>

@@ -13,4 +13,8 @@ export class HydrowitService {
     getAllUsers(): Observable<any> {
         return this.http.get(`${this.apiUrl}/users`);
     }
+
+    getAllStations(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/field/all/stations`);
+    }
 }

@@ -4,6 +4,8 @@ import { ModulesService } from '../services/modules.service';
 import { Module } from '../models/module.model';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
+import { HydrowitService } from '../services/hydrowit.service';
+
 
 @Component({
   selector: 'app-data-module',
@@ -16,10 +18,11 @@ import { CommonModule } from '@angular/common';
 })
 export class DataModuleComponent implements OnInit {
   module!: Module;
+  stations: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private modulesService: ModulesService
+    private modulesService: ModulesService, private hydrowitService: HydrowitService
   ) { }
 
   ngOnInit(): void {
@@ -34,5 +37,14 @@ export class DataModuleComponent implements OnInit {
         console.error("Module non trouvé");
       }
     }
+
+    this.hydrowitService.getAllStations().subscribe(
+      (data) => {
+        this.stations = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des stations', error);
+      }
+    );
   }
 }

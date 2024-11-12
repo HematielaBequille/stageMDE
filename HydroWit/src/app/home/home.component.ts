@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     console.log("test");
     // on récupère les utilisateurs (tests)
-    this.hydrowitService.getUsers().subscribe(
+    this.hydrowitService.getAllUsers().subscribe(
       (data: any) => {
         this.users = data;
       },

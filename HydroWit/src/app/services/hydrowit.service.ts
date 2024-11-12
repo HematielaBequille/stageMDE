@@ -10,7 +10,7 @@ export class HydrowitService {
 
     constructor(private http: HttpClient) { }
 
-    getUsers(): Observable<any> {
+    getAllUsers(): Observable<any> {
         return this.http.get(`${this.apiUrl}/users`);
     }
 }

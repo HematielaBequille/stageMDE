@@ -24,18 +24,18 @@ import { HydrowitService } from './services/hydrowit.service';
 })
 export class AppComponent implements OnInit {
   title = 'hydrowit';
-  /*users: any[] = [];
+  users: any[] = [];
 
-  constructor(private hydrowitService: HydrowitService) { }*/
+  constructor(private hydrowitService: HydrowitService) { }
 
   ngOnInit(): void {
-    /*this.hydrowitService.getUsers().subscribe(
+    this.hydrowitService.getAllUsers().subscribe(
       (data) => {
         this.users = data;
       },
       (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);
       }
-    );*/
+    );
   }
 }

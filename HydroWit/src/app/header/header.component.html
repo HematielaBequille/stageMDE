@@ -18,10 +18,10 @@
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item>
-          <a class="" routerLink="/accueil" routerLinkActive=""><span>Page d'accueil</span></a>
+          <span routerLink="/accueil" routerLinkActive="">Page d'accueil</span>
         </button>
         <button *ngFor="let module of modules" mat-menu-item>
-          <span>{{ module.title }}</span>
+          <span [routerLink]="['/modules', module.path, module.id]">{{ module.title }}</span>
         </button>
         <mat-divider></mat-divider>
         <button mat-menu-item (click)="logout()">

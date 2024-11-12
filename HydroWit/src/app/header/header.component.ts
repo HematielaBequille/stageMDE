@@ -8,7 +8,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { Module } from '../models/module.model';
 import { ModulesService } from '../services/modules.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +25,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     MatMenuTrigger,
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    RouterModule
   ],
 })
 export class HeaderComponent implements OnInit {

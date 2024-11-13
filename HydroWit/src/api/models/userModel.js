@@ -3,7 +3,7 @@ class User {
   constructor(id, name, firstname, rank) {
     this.id = id;
     this.name = name;
-    this.firstName = firstname;
+    this.firstname = firstname;
     this.rank = rank;
   }
 }

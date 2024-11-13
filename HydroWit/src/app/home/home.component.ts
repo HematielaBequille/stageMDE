@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ModulesService } from '../services/modules.service';
 import { Router } from '@angular/router';
 import { Module } from '../models/module.model';
+import { User } from '../models/user.model';
 import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 import { HeaderComponent } from '../header/header.component';
 import { HydrowitService } from '../services/hydrowit.service';
@@ -31,7 +32,7 @@ import { HydrowitService } from '../services/hydrowit.service';
   ],
 })
 export class HomeComponent implements OnInit {
-  users: any[] = [];
+  users: User[] = [];
   modules: Module[] = [];
 
   constructor(private modulesService: ModulesService, private router: Router, private hydrowitService: HydrowitService) { }

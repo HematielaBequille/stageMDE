@@ -1,16 +1,16 @@
 # Hydrowit
 
-### Installer les dépendances
+### 1/ Installer les dépendances
 ```bash
 npm install
 npm i @angular/cli -> normalement plus besoin
 npm i express -> normalement plus besoin
 ```
 
-### Démarrer le back-end
+### 2/ Démarrer le back-end
 `node server.js` pour démarrer le serveur web Express
 
-### Démarrer le front-end
+### 3/ Démarrer le front-end
 `ng serve` pour démarrer le serveur front de développement
 
 

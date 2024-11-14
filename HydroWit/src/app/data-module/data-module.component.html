@@ -7,10 +7,7 @@
     <p>Le module n'a pas été trouvé.</p>
 </div>
 
-<!--<div *ngFor="let station of stations">
-    <p>{{ station.id_atm }} - {{ station.emplacement }} - {{ station.secteur }} - {{ station.activite }} - {{ station.
-        ref_alti }} - {{ station.cote_cmh }} - {{ station.type_atm}} - {{ station.liste_atm }}</p>
-</div>-->
+<app-search-bar></app-search-bar>
 
 <table mat-table [dataSource]="stations" class="mat-elevation-z8">
     <!-- id_atm Column -->

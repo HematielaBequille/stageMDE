@@ -8,12 +8,13 @@ import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { HydrowitService } from '../services/hydrowit.service';
 import { MatTableModule } from '@angular/material/table';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-data-module',
   standalone: true,
   imports: [HeaderComponent,
-    CommonModule, MatTableModule
+    CommonModule, MatTableModule, SearchBarComponent
   ],
   templateUrl: './data-module.component.html',
   styleUrl: './data-module.component.scss'

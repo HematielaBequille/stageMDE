@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { SearchBarService } from '../services/search-bar.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,15 +23,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
 })
 export class SearchBarComponent {
-  onSubmit(form: any) {
-    console.log('Formulaire envoyé ', form);
-    console.log('Données envoyées: ', form.value);
+  onSubmit(form: NgForm) {
+    console.log('Formulaire envoyé:', {
+      stationsSélectionnées: this.stations.value,
+      capteursSélectionnés: this.sensors.value,
+    });
   }
 
   stations = new FormControl('');

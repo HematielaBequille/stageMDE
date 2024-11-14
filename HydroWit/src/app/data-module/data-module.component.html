@@ -61,6 +61,12 @@
         <td mat-cell *matCellDef="let station"> {{ station.liste_atm }} </td>
     </ng-container>
 
+    <!--  interventions_sur_atm Column -->
+    <ng-container matColumnDef="interventions_sur_atm">
+        <th mat-header-cell *matHeaderCellDef> interventions_sur_atm </th>
+        <td mat-cell *matCellDef="let station"> {{ station.interventions_sur_atm }} </td>
+    </ng-container>
+
     <!-- En-tête de table -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 

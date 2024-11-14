@@ -20,7 +20,7 @@ import { MatTableModule } from '@angular/material/table';
 export class DataModuleComponent implements OnInit {
   module!: Module;
   stations: Station[] = [];
-  displayedColumns: string[] = ['id_atm', 'emplacement', 'secteur', 'activite', 'ref_alti', 'cote_cmh', 'type_atm', 'liste_atm'];
+  displayedColumns: string[] = ['id_atm', 'emplacement', 'secteur', 'activite', 'ref_alti', 'cote_cmh', 'type_atm', 'liste_atm', 'interventions_sur_atm'];
 
   constructor(
     private route: ActivatedRoute,

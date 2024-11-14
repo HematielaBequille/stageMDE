@@ -7,4 +7,5 @@ export class Station {
     cote_cmh!: number;
     type_atm!: string;
     liste_atm!: string;
+    interventions_sur_atm!: string;
 }

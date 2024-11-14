@@ -20,7 +20,9 @@ exports.getAllStations = async (req, res) => {
 // GET - Récupérer tout les capteurs - asynchrone
 exports.getAllSensors = async (req, res) => {
   try {
-    const result = await db.query("");
+    const result = await db.query(
+      "SELECT id_capteur, nom_capteur, unite_capteur, desc_capteur, libelle_capteur, nom_capteur_data, type_station FROM referentiels.r_code_capteur"
+    );
     res.json(result.rows);
   } catch (err) {
     console.error(err);

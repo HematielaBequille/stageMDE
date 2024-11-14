@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModulesService } from '../services/modules.service';
 import { Module } from '../models/module.model';
 import { Station } from '../models/station.model';
+import { Sensor } from '../models/sensor.model';
 import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { HydrowitService } from '../services/hydrowit.service';
@@ -21,6 +22,8 @@ export class DataModuleComponent implements OnInit {
   module!: Module;
   stations: Station[] = [];
   displayedColumns: string[] = ['id_atm', 'emplacement', 'secteur', 'activite', 'ref_alti', 'cote_cmh', 'type_atm', 'liste_atm', 'interventions_sur_atm'];
+  sensors: Sensor[] = [];
+  displayedColumns2: string[] = ['id_capteur', 'nom_capteur', 'unite_capteur', 'desc_capteur', 'libelle_capteur', 'nom_capteur_data', 'type_station'];
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +49,16 @@ export class DataModuleComponent implements OnInit {
       },
       (error) => {
         console.error('Erreur lors de la récupération des stations', error);
+      }
+    );
+
+    this.hydrowitService.getAllSensors().subscribe(
+      (data) => {
+        this.sensors = data;
+        console.log(this.sensors);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des capteurs', error);
       }
     );
   }

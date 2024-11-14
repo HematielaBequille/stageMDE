@@ -10,24 +10,28 @@ export class ModulesService {
       id: '1',
       title: 'Module Données',
       description: 'bla',
+      responsive: 'non-optimisé pour téléphone & tablette',
       path: 'data'
     },
     {
       id: '2',
       title: 'Module Export',
       description: 'bla',
+      responsive: '',
       path: 'export'
     },
     {
       id: '3',
       title: 'Module Saisie',
       description: 'bla',
+      responsive: '',
       path: 'entry'
     },
     {
       id: '4',
       title: 'Module Synthèse',
       description: 'bla',
+      responsive: '',
       path: 'synthesis'
     },
   ];

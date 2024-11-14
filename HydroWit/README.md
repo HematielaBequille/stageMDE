@@ -1,11 +1,18 @@
 # Hydrowit
+
+### Installer les dépendances
 ```bash
 npm install
-npm i @angular/cli
-npm i express
+npm i @angular/cli -> normalement plus besoin
+npm i express -> normalement plus besoin
 ```
 
+### Démarrer le back-end
 `node server.js` pour démarrer le serveur web Express
+
+### Démarrer le front-end
+`ng serve` pour démarrer le serveur front de développement
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 

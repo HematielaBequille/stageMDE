@@ -45,41 +45,30 @@ import { SearchBarService } from '../services/search-bar.service';
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
+  //providers: [SearchBarService],
 })
 export class SearchBarComponent implements OnInit {
-  @Output() submit: EventEmitter<any> = new EventEmitter();
-
   stations: Station[] = [];
   sensors: Sensor[] = [];
   selectedStations: string[] = [];
-  selectedSensors: string[] = [];
+  selectedSensors: number[] = [];
 
-  constructor(private hydrowitService: HydrowitService) {}
+  constructor(
+    private hydrowitService: HydrowitService,
+    private searchBarService: SearchBarService
+  ) {}
 
   ngOnInit(): void {
-    this.hydrowitService.getAllStations().subscribe(
-      (data) => {
-        this.stations = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des stations', error);
-      }
-    );
-
-    this.hydrowitService.getAllSensors().subscribe(
-      (data) => {
-        this.sensors = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des capteurs', error);
-      }
-    );
+    this.stations = this.searchBarService.getFilteredStations();
+    this.sensors = this.searchBarService.getFilteredSensors();
   }
 
   onSubmit(): void {
-    this.submit.emit({
-      stations: this.selectedStations,
-      sensors: this.selectedSensors,
-    });
+    console.log('Stations sélectionnées :', this.selectedStations);
+  console.log('Capteurs sélectionnés :', this.selectedSensors);
+    this.searchBarService.updateSelections(
+      this.selectedStations,
+      this.selectedSensors
+    );
   }
 }

@@ -35,8 +35,8 @@ export class HomeComponent implements OnInit {
   modules: Module[] = [];
 
   constructor(
-    private modulesService: ModulesService,
     private router: Router,
+    private modulesService: ModulesService,
     private hydrowitService: HydrowitService
   ) {}
 

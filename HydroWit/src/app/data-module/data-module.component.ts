@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { ModulesService } from '../services/modules.service';
 import { HydrowitService } from '../services/hydrowit.service';
+import { SearchBarService } from '../services/search-bar.service';
 import { Module } from '../models/module.model';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
@@ -16,6 +17,7 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
   imports: [HeaderComponent, CommonModule, MatTableModule, SearchBarComponent],
   templateUrl: './data-module.component.html',
   styleUrl: './data-module.component.scss',
+  //providers: [SearchBarService],
 })
 export class DataModuleComponent implements OnInit {
   module!: Module;
@@ -30,7 +32,8 @@ export class DataModuleComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private modulesService: ModulesService,
-    private hydrowitService: HydrowitService
+    private hydrowitService: HydrowitService,
+    private searchBarService: SearchBarService
   ) {}
 
   ngOnInit(): void {
@@ -45,49 +48,35 @@ export class DataModuleComponent implements OnInit {
         console.error('Module non trouvé');
       }
     }
+    this.hydrowitService.getAllStations().subscribe((data) => {
+      this.searchBarService.setStations(data);
+      this.stations = this.searchBarService.getFilteredStations();
+    });
 
-    this.hydrowitService.getAllStations().subscribe(
-      (data) => {
-        this.stations = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des stations', error);
-      }
-    );
+    this.hydrowitService.getAllSensors().subscribe((data) => {
+      this.searchBarService.setSensors(data);
+      this.sensors = this.searchBarService.getFilteredSensors();
+    });
 
-    this.hydrowitService.getAllSensors().subscribe(
-      (data) => {
-        this.sensors = data;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des capteurs', error);
-      }
-    );
+    // Abonnez-vous aux changements dans les stations et capteurs filtrés
+    this.searchBarService.submit.subscribe(() => {
+      this.stations = this.searchBarService.getFilteredStations();
+      this.sensors = this.searchBarService.getFilteredSensors();
+      this.isFormSubmitted = true;
+    });
   }
 
-  onSubmit(event: any): void {
-    console.log('Stations sélectionnées:', event.stations);
-    console.log('Capteurs sélectionnées:', event.sensors);
-
+  /*onSearchFormSubmit(event: any): void {
+    console.log('Received data:', event);
     this.selectedStations = event.stations;
     this.selectedSensors = event.sensors;
 
-    this.isFormSubmitted = true;
-    this.filterData();
-  }
+    this.stations = this.searchBarService.getFilteredStations();
+    this.sensors = this.searchBarService.getFilteredSensors();
 
-  filterData() {
-    if (this.selectedStations.length > 0) {
-      this.stations = this.stations.filter((station) =>
-        this.selectedStations.includes(station.emplacement)
-      );
-    }
-    if (this.selectedSensors.length > 0) {
-      this.sensors = this.sensors.filter((sensor) =>
-        this.selectedSensors.includes(sensor.id_capteur)
-      );
-    }
-    this.displayedColumns = ['emplacement'];
-    this.displayedColumns2 = ['id_capteur', 'nom_capteur'];
-  }
+    console.log('Stations:', this.stations);
+    console.log('Sensors:', this.sensors);
+
+    this.isFormSubmitted = true;
+  }*/
 }

@@ -1,66 +1,17 @@
-<form [formGroup]="searchBarForm" (ngSubmit)="onSubmit()">
-  <!-- Checkbox pour verrouiller/déverrouiller le formulaire -->
-  <mat-checkbox formControlName="choice">
-    Verrouiller le formulaire
-  </mat-checkbox>
-
-  <!-- Champs du formulaire -->
-  <mat-form-field>
-    <mat-label>Stations</mat-label>
-    <input matInput formControlName="stations" placeholder="Sélectionnez une station" [disabled]="isFormDisabled" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Capteurs</mat-label>
-    <input matInput formControlName="sensors" placeholder="Sélectionnez un capteur" [disabled]="isFormDisabled" />
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Autre champ</mat-label>
-    <input matInput formControlName="autreChamp" placeholder="Autre information" [disabled]="isFormDisabled" />
-  </mat-form-field>
-
-  <button mat-raised-button type="submit" [disabled]="isFormDisabled">Envoyer</button>
-</form>
-
-<!-- Formulaire avec les filtres -->
-<mat-card class="search-bar-form-card">
-  <mat-card-header>
-    <mat-card-title>Filtres de recherche</mat-card-title>
-  </mat-card-header>
-
-  <mat-card-content>
-    <mat-card>
-      <mat-card-title>Afficher:</mat-card-title>
-      <mat-checkbox formControlName="niveauEau">Niveaux d'eau</mat-checkbox>
-      <mat-checkbox formControlName="mareegraphe">Maréegraphe</mat-checkbox>
-      <mat-checkbox formControlName="telemesures">Télémesures</mat-checkbox>
-
-      <mat-divider class="stationList-divider"></mat-divider>
-
-      <mat-form-field class="stationList">
-        <mat-label>Stations</mat-label>
-        <mat-select formControlName="stations" [disabled]="isFormDisabled" multiple>
-          <mat-option *ngFor="let station of stationList" [value]="station">
-            {{ station }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-divider></mat-divider>
-
-      <mat-form-field class="sensorList">
-        <mat-label>Capteurs</mat-label>
-        <mat-select formControlName="sensors" [disabled]="isFormDisabled" multiple>
-          <mat-option *ngFor="let sensor of sensorList" [value]="sensor">
-            {{ sensor }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card>
-  </mat-card-content>
-
-  <mat-card-actions class="searchButton">
-    <button mat-flat-button type="submit" [disabled]="isFormDisabled">Rechercher</button>
-  </mat-card-actions>
-</mat-card>
+<div class="form-container">
+  <div class="form-group">
+    <label for="emplacement">Emplacements</label>
+    <select
+      class="form-control"
+      id="emplacement"
+      [(ngModel)]="selectedStations"
+      multiple
+      required
+    >
+      <option *ngFor="let station of stations" [value]="station.emplacement">
+        {{ station.emplacement }}
+      </option>
+    </select>
+  </div>
+  <button class="btn btn-primary" (click)="onSubmit()">Envoyer</button>
+</div>

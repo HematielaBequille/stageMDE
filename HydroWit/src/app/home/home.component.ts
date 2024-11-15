@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 import { ModulesService } from '../services/modules.service';
-import { Router } from '@angular/router';
+import { HydrowitService } from '../services/hydrowit.service';
 import { Module } from '../models/module.model';
 import { User } from '../models/user.model';
-import { FlexLayoutModule } from '@ngbracket/ngx-layout';
 import { HeaderComponent } from '../header/header.component';
-import { HydrowitService } from '../services/hydrowit.service';
-
 
 @Component({
   selector: 'app-home',
@@ -28,17 +27,21 @@ import { HydrowitService } from '../services/hydrowit.service';
     MatCardModule,
     CommonModule,
     FlexLayoutModule,
-    HeaderComponent
+    HeaderComponent,
   ],
 })
 export class HomeComponent implements OnInit {
   users: User[] = [];
   modules: Module[] = [];
 
-  constructor(private modulesService: ModulesService, private router: Router, private hydrowitService: HydrowitService) { }
+  constructor(
+    private modulesService: ModulesService,
+    private router: Router,
+    private hydrowitService: HydrowitService
+  ) {}
 
   ngOnInit(): void {
-    console.log("test");
+    console.log('test');
     // on récupère les utilisateurs (tests)
     this.hydrowitService.getAllUsers().subscribe(
       (data: any) => {

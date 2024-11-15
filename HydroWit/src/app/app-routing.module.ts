@@ -11,26 +11,29 @@ import { SynthesisModuleComponent } from './synthesis-module/synthesis-module.co
 
 export const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' }, // pour rediriger directement sur la page de login
-  { path: 'login', title: 'Page de connexion d\'HydroWit', component: LoginComponent },
-  { path: 'home', title: 'Page d\'accueil d\'HydroWit', component: HomeComponent },
+  {
+    path: 'login',
+    title: "Page de connexion d'HydroWit",
+    component: LoginComponent,
+  },
+  {
+    path: 'home',
+    title: "Page d'accueil d'HydroWit",
+    component: HomeComponent,
+  },
   { path: 'back-office', component: BackOfficeComponent },
   { path: 'modules/data/:id', component: DataModuleComponent },
   { path: 'modules/export/:id', component: ExportModuleComponent },
   { path: 'modules/entry/:id', component: EntryModuleComponent },
   { path: 'modules/synthesis/:id', component: SynthesisModuleComponent },
-  { path: '**', redirectTo: 'home' } // pour rediriger les routes inconnues vers la page d'accueil
+  { path: '**', redirectTo: 'home' }, // pour rediriger les routes inconnues vers la page d'accueil
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}
 
 // TODO
 //{ path: 'protected', component: ProtectedComponent, canActivate: [AuthGuard] }

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { MatTableModule } from '@angular/material/table';
 import { ModulesService } from '../services/modules.service';
+import { HydrowitService } from '../services/hydrowit.service';
 import { Module } from '../models/module.model';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
 import { HeaderComponent } from '../header/header.component';
-import { CommonModule } from '@angular/common';
-import { HydrowitService } from '../services/hydrowit.service';
-import { MatTableModule } from '@angular/material/table';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
@@ -58,7 +58,6 @@ export class DataModuleComponent implements OnInit {
     this.hydrowitService.getAllSensors().subscribe(
       (data) => {
         this.sensors = data;
-        console.log(this.sensors);
       },
       (error) => {
         console.error('Erreur lors de la récupération des capteurs', error);
@@ -72,7 +71,7 @@ export class DataModuleComponent implements OnInit {
 
     this.selectedStations = event.stations;
     this.selectedSensors = event.sensors;
-    
+
     this.isFormSubmitted = true;
     this.filterData();
   }

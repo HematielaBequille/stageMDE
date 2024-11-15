@@ -1,20 +1,19 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { CommonModule } from '@angular/common';
 import { Module } from '../models/module.model';
 import { ModulesService } from '../services/modules.service';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  //encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     MatButtonModule,
@@ -26,7 +25,7 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
     CommonModule,
     RouterLink,
     RouterLinkActive,
-    RouterModule
+    RouterModule,
   ],
 })
 export class HeaderComponent implements OnInit {

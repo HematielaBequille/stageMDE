@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HeaderComponent } from './header/header.component';
-import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-
 
 @Component({
   selector: 'app-root',
@@ -24,5 +23,5 @@ import { LoginComponent } from './login/login.component';
 export class AppComponent implements OnInit {
   title = 'hydrowit';
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }

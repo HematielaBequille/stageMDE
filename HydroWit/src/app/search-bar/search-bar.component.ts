@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
+import {
+  Component,
+  NgModule,
+  OnInit,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { SearchBarService } from '../services/search-bar.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -41,6 +47,8 @@ import { HydrowitService } from '../services/hydrowit.service';
   styleUrl: './search-bar.component.scss',
 })
 export class SearchBarComponent implements OnInit {
+  @Output() submit: EventEmitter<any> = new EventEmitter();
+
   stations: Station[] = [];
   sensors: Sensor[] = [];
   selectedStations: string[] = [];
@@ -70,7 +78,9 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Stations sélectionnées:', this.selectedStations);
-    console.log('Capteurs sélectionnées:', this.selectedSensors);
+    this.submit.emit({
+      stations: this.selectedStations,
+      sensors: this.selectedSensors
+    });
   }
 }

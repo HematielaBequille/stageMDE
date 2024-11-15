@@ -13,23 +13,25 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 @Component({
   selector: 'app-data-module',
   standalone: true,
-  imports: [HeaderComponent,
-    CommonModule, MatTableModule, SearchBarComponent
-  ],
+  imports: [HeaderComponent, CommonModule, MatTableModule, SearchBarComponent],
   templateUrl: './data-module.component.html',
-  styleUrl: './data-module.component.scss'
+  styleUrl: './data-module.component.scss',
 })
 export class DataModuleComponent implements OnInit {
   module!: Module;
   stations: Station[] = [];
-  displayedColumns: string[] = ['id_atm', 'emplacement', 'secteur', 'activite', 'ref_alti', 'cote_cmh', 'type_atm', 'liste_atm', 'interventions_sur_atm'];
+  displayedColumns: string[] = [];
   sensors: Sensor[] = [];
-  displayedColumns2: string[] = ['id_capteur', 'nom_capteur', 'unite_capteur', 'desc_capteur', 'libelle_capteur', 'nom_capteur_data', 'type_station'];
+  displayedColumns2: string[] = [];
+  isFormSubmitted: boolean = false;
+  selectedStations: string[] = [];
+  selectedSensors: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private modulesService: ModulesService, private hydrowitService: HydrowitService
-  ) { }
+    private modulesService: ModulesService,
+    private hydrowitService: HydrowitService
+  ) {}
 
   ngOnInit(): void {
     // on récupère l'id du module dans les paramètres de la route
@@ -40,7 +42,7 @@ export class DataModuleComponent implements OnInit {
       if (selectedModule) {
         this.module = selectedModule;
       } else {
-        console.error("Module non trouvé");
+        console.error('Module non trouvé');
       }
     }
 
@@ -62,5 +64,31 @@ export class DataModuleComponent implements OnInit {
         console.error('Erreur lors de la récupération des capteurs', error);
       }
     );
+  }
+
+  onSubmit(event: any): void {
+    console.log('Stations sélectionnées:', event.stations);
+    console.log('Capteurs sélectionnées:', event.sensors);
+
+    this.selectedStations = event.stations;
+    this.selectedSensors = event.sensors;
+    
+    this.isFormSubmitted = true;
+    this.filterData();
+  }
+
+  filterData() {
+    if (this.selectedStations.length > 0) {
+      this.stations = this.stations.filter((station) =>
+        this.selectedStations.includes(station.emplacement)
+      );
+    }
+    if (this.selectedSensors.length > 0) {
+      this.sensors = this.sensors.filter((sensor) =>
+        this.selectedSensors.includes(sensor.id_capteur)
+      );
+    }
+    this.displayedColumns = ['emplacement'];
+    this.displayedColumns2 = ['id_capteur', 'nom_capteur'];
   }
 }

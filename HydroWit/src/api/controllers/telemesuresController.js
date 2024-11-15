@@ -1,4 +1,5 @@
 const db = require("../db");
+const allowedTables = ["t_00000000c1_0001", "t_00000000c1_0002"]; // TODO trouver où ranger ça et une meilleur façon de gérer ça
 
 // GET - Récupérer toutes les stations telemesures - asynchrone
 exports.getAllStations = async (req, res) => {
@@ -19,15 +20,37 @@ exports.getAllStations = async (req, res) => {
 
 //GET - Récupérer tous les capteurs d'une station telemesure - asynchrone
 exports.getAllSensorsOfOneStation = async (req, res) => {
-    try {
-        const result = await db.query("");
-        res.json(result.rows);
-    } catch (err) {
-        console.error(err);
-        res
-          .status(500)
-          .send(
-            "Erreur du serveur lors de la récupération de tout les capteurs de la station de télémesure"
-          );
-      }
-}
+  try {
+    const result = await db.query("");
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .send(
+        "Erreur du serveur lors de la récupération de tout les capteurs de la station de télémesure"
+      );
+  }
+};
+
+//GET - Récupérer toutes les données d'un capteur d'une station telemesure - asynchrone
+exports.getDataOfOneSensorOfOneStation = async (req, res) => {
+  const tableName = req.params.tableName;
+
+  if (!allowedTables.includes(tableName)) {
+    return res.status(400).json({ error: "Table non autorisée" });
+  }
+
+  try {
+    const query = `SELECT date, heure, valeur FROM telemesure.${tableName}`;
+    const result = await db.query(query);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .send(
+        "Erreur du serveur lors de la récupération des données d'un capteur d'une station télémesure"
+      );
+  }
+};

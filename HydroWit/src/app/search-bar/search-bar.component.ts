@@ -20,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Station } from '../models/station.model';
+import { Sensor } from '../models/sensor.model';
 import { HydrowitService } from '../services/hydrowit.service';
 
 @Component({
@@ -41,9 +42,9 @@ import { HydrowitService } from '../services/hydrowit.service';
 })
 export class SearchBarComponent implements OnInit {
   stations: Station[] = [];
-  //stationList: string[] = ['station1', 'station2', 'station3'];
-  sensorList: string[] = ['capteur1', 'capteur2', 'capteur3'];
+  sensors: Sensor[] = [];
   selectedStations: string[] = [];
+  selectedSensors: string[] = [];
 
   constructor(private hydrowitService: HydrowitService) {}
 
@@ -56,9 +57,20 @@ export class SearchBarComponent implements OnInit {
         console.error('Erreur lors de la récupération des stations', error);
       }
     );
+
+    this.hydrowitService.getAllSensors().subscribe(
+      (data) => {
+        this.sensors = data;
+        console.log(this.sensors);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des capteurs', error);
+      }
+    );
   }
 
   onSubmit(): void {
     console.log('Stations sélectionnées:', this.selectedStations);
+    console.log('Capteurs sélectionnées:', this.selectedSensors);
   }
 }

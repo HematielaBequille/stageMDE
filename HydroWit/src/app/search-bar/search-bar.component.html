@@ -1,4 +1,5 @@
 <div class="form-container">
+  <!-- Choix multiple des emplacements -->
   <div class="form-group">
     <label for="emplacement">Emplacements</label>
     <select
@@ -13,5 +14,24 @@
       </option>
     </select>
   </div>
+
+  <!-- Choix multiples des capteurs -->
+  <div class="form-group">
+    <label for="sensor">Capteurs</label>
+    <select
+      class="form-control"
+      id="sensor"
+      [(ngModel)]="selectedSensors"
+      multiple
+      required
+    >
+      <option *ngFor="let sensor of sensors" [value]="sensor.id_capteur">
+        {{ sensor.id_capteur }} - {{ sensor.nom_capteur }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="button-container">
   <button class="btn btn-primary" (click)="onSubmit()">Envoyer</button>
 </div>

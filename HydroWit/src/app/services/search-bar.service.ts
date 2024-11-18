@@ -15,7 +15,7 @@ export class SearchBarService {
   private selectedSensors: number[] = [];
   displayedColumns2: string[] = ['id_capteur', 'nom_capteur'];
   private dataSystems: DataSystem[] = [
-    { nom: 'Levellogger & télémesures' },
+    { nom: 'Télémesures' },
     { nom: 'Maréegraphe' },
     { nom: 'Météorologie' },
   ];

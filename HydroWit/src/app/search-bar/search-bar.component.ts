@@ -54,6 +54,8 @@ export class SearchBarComponent implements OnInit {
   selectedStations: string[] = [];
   selectedSensors: number[] = [];
   selectedDataSystem: string = '';
+  isDataSystemSelected: boolean = false;
+  isStationsSelected: boolean = false;
 
   constructor(
     private hydrowitService: HydrowitService,
@@ -75,7 +77,15 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Stations sélectionnées :', this.selectedStations);
+    if (this.selectedDataSystem) {
+      this.isDataSystemSelected = true;
+      console.log('Système de données sélectionné :', this.selectedDataSystem);
+    }
+    if (this.selectedStations) {
+      this.isStationsSelected = true;
+      console.log('Stations sélectionnées :', this.selectedStations);
+    }
+    //console.log('Stations sélectionnées :', this.selectedStations);
     console.log('Capteurs sélectionnés :', this.selectedSensors);
     this.searchBarService.updateSelections(
       this.selectedStations,
@@ -85,6 +95,6 @@ export class SearchBarComponent implements OnInit {
 
   onDataSystemChange(dataSystemName: string): void {
     this.selectedDataSystem = dataSystemName;
-    console.log('Système de données sélectionné :', this.selectedDataSystem);
+    //console.log('Système de données sélectionné :', this.selectedDataSystem);
   }
 }

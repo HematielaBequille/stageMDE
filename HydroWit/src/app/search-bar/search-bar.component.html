@@ -1,4 +1,19 @@
 <div class="form-group-container">
+  <!-- on affiche la sélection d'un système de données -->
+  <div class="form-group">
+    <label for="dataSystem">Système de données</label>
+    <div *ngFor="let dataSystem of dataSystems">
+      <input
+        type="radio"
+        id="dataSystem_{{ dataSystem.nom }}"
+        [checked]="selectedDataSystem.includes(dataSystem.nom)"
+      (change)="onDataSystemChange(dataSystem.nom)"
+      />
+      <label for="dataSystem_{{ dataSystem.nom }}">{{ dataSystem.nom }}</label>
+    </div>
+  </div>
+
+  <!-- on affiche la sélection d'emplacements uniquement après la sélection d'un système de données -->
   <div class="form-group">
     <label for="emplacement">Emplacements</label>
     <select
@@ -13,6 +28,7 @@
     </select>
   </div>
 
+  <!-- on affiche la sélection de capteurs uniquement après la sélection d'emplacements -->
   <div class="form-group">
     <label for="sensor">Capteurs</label>
     <select

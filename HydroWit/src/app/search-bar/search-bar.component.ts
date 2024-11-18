@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
+import { DataSystem } from '../models/dataSystem.model';
 import { HydrowitService } from '../services/hydrowit.service';
 import { SearchBarService } from '../services/search-bar.service';
 
@@ -49,8 +50,10 @@ import { SearchBarService } from '../services/search-bar.service';
 export class SearchBarComponent implements OnInit {
   stations: Station[] = [];
   sensors: Sensor[] = [];
+  dataSystems: DataSystem[] = [];
   selectedStations: string[] = [];
   selectedSensors: number[] = [];
+  selectedDataSystem: string = '';
 
   constructor(
     private hydrowitService: HydrowitService,
@@ -58,6 +61,8 @@ export class SearchBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.dataSystems = this.searchBarService.getDataSystems();
+
     this.hydrowitService.getAllStations().subscribe((data: Station[]) => {
       this.searchBarService.setStations(data);
       this.stations = this.searchBarService.getFilteredStations();
@@ -76,5 +81,10 @@ export class SearchBarComponent implements OnInit {
       this.selectedStations,
       this.selectedSensors
     );
+  }
+
+  onDataSystemChange(dataSystemName: string): void {
+    this.selectedDataSystem = dataSystemName;
+    console.log('Système de données sélectionné :', this.selectedDataSystem);
   }
 }

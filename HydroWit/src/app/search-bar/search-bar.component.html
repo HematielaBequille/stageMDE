@@ -18,7 +18,7 @@
   </div>
 
   <!-- on affiche la sélection d'emplacements uniquement après la sélection d'un système de données -->
-  <div *ngIf="isDataSystemSelected" class="form-group">
+  <div *ngIf="isFormSubmitted && isDataSystemSelected" class="form-group">
     <label for="emplacement" class="labels">Emplacements</label>
     <select
       class="form-control"
@@ -36,7 +36,7 @@
   </div>
 
   <!-- on affiche la sélection de capteurs uniquement après la sélection d'emplacements -->
-  <div *ngIf="isStationsSelected" class="form-group">
+  <div *ngIf="isFormSubmitted && isStationsSelected" class="form-group">
     <label for="sensor" class="labels">Capteurs</label>
     <select
       class="form-control"

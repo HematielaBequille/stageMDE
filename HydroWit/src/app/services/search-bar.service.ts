@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
+import { HydrowitService } from './hydrowit.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class SearchBarService {
   submit: EventEmitter<{ stations: string[]; sensors: number[] }> =
     new EventEmitter();
 
-  constructor() {}
+  constructor(private HydrowitService: HydrowitService) {}
 
   setStations(stations: Station[]): void {
     this.stations = stations;
@@ -42,6 +43,9 @@ export class SearchBarService {
   }
 
   getFilteredStations(): Station[] {
+    if (!this.stations || this.stations.length === 0) {
+      return [];
+    }
     if (this.selectedStations.length === 0) {
       return this.stations;
     }
@@ -51,6 +55,9 @@ export class SearchBarService {
   }
 
   getFilteredSensors(): Sensor[] {
+    if (!this.sensors || this.sensors.length === 0) {
+      return [];
+    }
     if (this.selectedSensors.length === 0) {
       return this.sensors;
     }

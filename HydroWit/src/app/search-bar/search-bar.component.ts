@@ -45,7 +45,6 @@ import { SearchBarService } from '../services/search-bar.service';
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
-  //providers: [SearchBarService],
 })
 export class SearchBarComponent implements OnInit {
   stations: Station[] = [];
@@ -59,13 +58,20 @@ export class SearchBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.stations = this.searchBarService.getFilteredStations();
-    this.sensors = this.searchBarService.getFilteredSensors();
+    this.hydrowitService.getAllStations().subscribe((data: Station[]) => {
+      this.searchBarService.setStations(data);
+      this.stations = this.searchBarService.getFilteredStations();
+    });
+
+    this.hydrowitService.getAllSensors().subscribe((data: Sensor[]) => {
+      this.searchBarService.setSensors(data);
+      this.sensors = this.searchBarService.getFilteredSensors();
+    });
   }
 
   onSubmit(): void {
     console.log('Stations sélectionnées :', this.selectedStations);
-  console.log('Capteurs sélectionnés :', this.selectedSensors);
+    console.log('Capteurs sélectionnés :', this.selectedSensors);
     this.searchBarService.updateSelections(
       this.selectedStations,
       this.selectedSensors

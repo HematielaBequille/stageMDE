@@ -17,7 +17,6 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
   imports: [HeaderComponent, CommonModule, MatTableModule, SearchBarComponent],
   templateUrl: './data-module.component.html',
   styleUrl: './data-module.component.scss',
-  //providers: [SearchBarService],
 })
 export class DataModuleComponent implements OnInit {
   module!: Module;
@@ -48,35 +47,20 @@ export class DataModuleComponent implements OnInit {
         console.error('Module non trouvé');
       }
     }
-    this.hydrowitService.getAllStations().subscribe((data) => {
-      this.searchBarService.setStations(data);
-      this.stations = this.searchBarService.getFilteredStations();
-    });
-
-    this.hydrowitService.getAllSensors().subscribe((data) => {
-      this.searchBarService.setSensors(data);
-      this.sensors = this.searchBarService.getFilteredSensors();
-    });
-
-    // Abonnez-vous aux changements dans les stations et capteurs filtrés
-    this.searchBarService.submit.subscribe(() => {
-      this.stations = this.searchBarService.getFilteredStations();
-      this.sensors = this.searchBarService.getFilteredSensors();
-      this.isFormSubmitted = true;
-    });
-  }
-
-  /*onSearchFormSubmit(event: any): void {
-    console.log('Received data:', event);
-    this.selectedStations = event.stations;
-    this.selectedSensors = event.sensors;
 
     this.stations = this.searchBarService.getFilteredStations();
     this.sensors = this.searchBarService.getFilteredSensors();
+    this.displayedColumns = ['id_atm', 'emplacement'];
+    this.displayedColumns2 = ['id_capteur', 'nom_capteur'];
 
-    console.log('Stations:', this.stations);
-    console.log('Sensors:', this.sensors);
-
-    this.isFormSubmitted = true;
-  }*/
+    // Abonnement aux changements dans les stations et capteurs filtrés
+    this.searchBarService.submit.subscribe(() => {
+      console.log('Événement reçu dans DataModuleComponent');
+      this.stations = this.searchBarService.getFilteredStations();
+      this.sensors = this.searchBarService.getFilteredSensors();
+      console.log('Stations filtrées :', this.stations);
+      console.log('Capteurs filtrés :', this.sensors);
+      this.isFormSubmitted = true;
+    });
+  }
 }

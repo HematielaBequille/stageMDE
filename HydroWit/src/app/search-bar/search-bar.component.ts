@@ -53,7 +53,7 @@ export class SearchBarComponent implements OnInit {
   sensors: Sensor[] = [];
   dataSystems: DataSystem[] = [];
   selectedStations: string[] = [];
-  selectedSensors: number[] = [];
+  selectedSensors: string[] = [];
   selectedDataSystem: string = '';
   isDataSystemSelected: boolean = false;
   isStationsSelected: boolean = false;
@@ -63,20 +63,6 @@ export class SearchBarComponent implements OnInit {
     private hydrowitService: HydrowitService,
     private searchBarService: SearchBarService
   ) {}
-
-  ngOnInit(): void {
-    this.dataSystems = this.searchBarService.getDataSystems();
-
-    this.hydrowitService.getAllStations().subscribe((data: Station[]) => {
-      this.searchBarService.setStations(data);
-      this.stations = this.searchBarService.getFilteredStations();
-    });
-
-    this.hydrowitService.getAllSensors().subscribe((data: Sensor[]) => {
-      this.searchBarService.setSensors(data);
-      this.sensors = this.searchBarService.getFilteredSensors();
-    });
-  }
 
   fetchStations(dataSystemType: string): void {
     let stationsObservable: Observable<Station[]>;
@@ -109,6 +95,39 @@ export class SearchBarComponent implements OnInit {
     );
   }
 
+  fetchSensors(): void {
+    let sensorsObservable: Observable<Sensor[]>;
+
+    sensorsObservable = this.hydrowitService.getAllMeteorologieSensors();
+
+    sensorsObservable.subscribe(
+      (sensors: Sensor[]) => {
+        console.log(`capteurs récupérées :`, sensors);
+        this.sensors = sensors;
+      },
+      (error) => {
+        console.error(
+          `Erreur lors de la récupération des capteurs :`,
+          error
+        );
+      }
+    );
+  }
+
+  ngOnInit(): void {
+    this.dataSystems = this.searchBarService.getDataSystems();
+
+    this.hydrowitService.getAllStations().subscribe((data: Station[]) => {
+      this.searchBarService.setStations(data);
+      this.stations = this.searchBarService.getFilteredStations();
+    });
+
+    this.hydrowitService.getAllSensors().subscribe((data: Sensor[]) => {
+      this.searchBarService.setSensors(data);
+      this.sensors = this.searchBarService.getFilteredSensors();
+    });
+  }
+
   onSubmit(): void {
     // on remet à zéro
     this.selectedStations = [];
@@ -126,6 +145,8 @@ export class SearchBarComponent implements OnInit {
       this.isDataSystemSelected = true;
       this.fetchStations('mareegraphe');
     }
+
+    this.fetchSensors();
 
     this.isFormSubmitted = true;
     console.log('Stations sélectionnées :', this.selectedStations);
@@ -148,3 +169,5 @@ export class SearchBarComponent implements OnInit {
     this.isFormSubmitted = false;
   }
 }
+
+// TODO il faudrait diviser le formulaire en étape pour bien segmenter le code

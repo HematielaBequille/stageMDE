@@ -2,6 +2,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
 import { DataSystem } from '../models/dataSystem.model';
+import { MareegrapheSensor } from '../models/mareegrapheSensor.model';
+import { MeteorologieSensor } from '../models/meteorologieSensor.model';
 import { HydrowitService } from './hydrowit.service';
 
 @Injectable({
@@ -12,15 +14,17 @@ export class SearchBarService {
   private selectedStations: string[] = [];
   displayedColumns: string[] = ['emplacement'];
   private sensors: Sensor[] = [];
-  private selectedSensors: number[] = [];
+  private selectedSensors: string[] = [];
   displayedColumns2: string[] = ['id_capteur', 'nom_capteur'];
   private dataSystems: DataSystem[] = [
     { nom: 'Télémesures' },
     { nom: 'Maréegraphe' },
     { nom: 'Météorologie' },
   ];
+  private mareegrapheSensors: MareegrapheSensor[] = [];
+  private meteorologieSensors: MeteorologieSensor[] = [];
   selectedDataSystem: string = '';
-  submit: EventEmitter<{ stations: string[]; sensors: number[] }> =
+  submit: EventEmitter<{ stations: string[]; sensors: string[] }> =
     new EventEmitter();
 
   constructor(private HydrowitService: HydrowitService) {}
@@ -28,14 +32,6 @@ export class SearchBarService {
   getDataSystems(): DataSystem[] {
     return this.dataSystems;
   }
-
-  /*getAllMeteorologieStations(): Station[] {
-    return this.stations;
-  }
-
-  getAllTelemesuresStations(): Station[] {
-    return this.stations;
-  }*/
 
   setStations(stations: Station[]): void {
     this.stations = stations;
@@ -50,7 +46,7 @@ export class SearchBarService {
   // Met à jour les stations et capteurs sélectionnés
   updateSelections(
     selectedStations: string[],
-    selectedSensors: number[]
+    selectedSensors: string[]
   ): void {
     this.selectedStations = selectedStations;
     this.selectedSensors = selectedSensors;
@@ -69,8 +65,9 @@ export class SearchBarService {
       return this.stations;
     }
     if (this.selectedDataSystem) {
-      return this.stations.filter((station) =>
-        station.source_schema === this.selectedDataSystem);
+      return this.stations.filter(
+        (station) => station.source_schema === this.selectedDataSystem
+      );
     }
     return this.stations.filter((station) =>
       this.selectedStations.includes(station.libelle_station)

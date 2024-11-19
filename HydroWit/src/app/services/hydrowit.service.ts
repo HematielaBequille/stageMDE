@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Sensor } from '../models/sensor.model';
+import { MareegrapheSensor } from '../models/mareegrapheSensor.model';
+import { MeteorologieSensor } from '../models/meteorologieSensor.model';
 import { Station } from '../models/station.model';
 
 @Injectable({
@@ -29,16 +31,29 @@ export class HydrowitService {
 
   // GET - Récupérer toutes les stations telemesures
   getAllTelemesuresStations(): Observable<Station[]> {
-    return this.http.get<Station[]>(`${this.apiUrl}/field/telemesures/stations`);
+    return this.http.get<Station[]>(
+      `${this.apiUrl}/field/telemesures/stations`
+    );
   }
 
   // GET - Récupérer toutes les stations meteorologies
   getAllMeteorologieStations(): Observable<Station[]> {
-    return this.http.get<Station[]>(`${this.apiUrl}/field/meteorologie/stations`);
+    return this.http.get<Station[]>(
+      `${this.apiUrl}/field/meteorologie/stations`
+    );
   }
 
   // GET - Récupérer toutes les stations mareegraphes
   getAllMareegrapheStations(): Observable<Station[]> {
-    return this.http.get<Station[]>(`${this.apiUrl}/field/mareegraphe/stations`);
+    return this.http.get<Station[]>(
+      `${this.apiUrl}/field/mareegraphe/stations`
+    );
+  }
+
+  // GET - Récupérer tout les capteurs des stations meteorologies
+  getAllMeteorologieSensors(): Observable<MeteorologieSensor[]> {
+    return this.http.get<MeteorologieSensor[]>(
+      `${this.apiUrl}/field/meteorologie/sensors`
+    );
   }
 }

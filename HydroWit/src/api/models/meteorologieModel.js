@@ -6,4 +6,13 @@ class MeteorologieStation {
   }
 }
 
+class MeteorologieSensor {
+  constructor(id_capteur, unite_capteur, libelle_capteur) {
+    this.id_capteur = id_capteur;
+    this.unite_capteur = unite_capteur;
+    this.libelle_capteur = libelle_capteur;
+  }
+}
+
 module.exports = MeteorologieStation;
+module.exports = MeteorologieSensor;

@@ -17,3 +17,20 @@ exports.getAllMeteorologieStations = async (req, res) => {
       );
   }
 };
+
+// GET - Récupérer tout les capteurs des stations météorologies - asynchrone
+exports.getAllMeteorologieSensors = async (req, res) => {
+  try {
+    const result = await db.query(
+      "SELECT id_capteur, unite_capteur, libelle_capteur FROM referentiels.r_code_capteur WHERE type_station = 'météo'"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .send(
+        "Erreur du serveur lors de la récupération de tout les capteurs des stations météorologies"
+      );
+  }
+};

@@ -1,5 +1,6 @@
 const db = require("../db");
 const allowedTables = ["t_00000000c1_0001", "t_00000000c1_0002"]; // TODO trouver où ranger ça et une meilleur façon de gérer ça
+const allowedStations = ["00000000C1"]; // TODO pareil
 
 // GET - Récupérer toutes les stations telemesures - asynchrone
 exports.getAllStations = async (req, res) => {
@@ -18,10 +19,21 @@ exports.getAllStations = async (req, res) => {
   }
 };
 
-//GET - Récupérer tous les capteurs d'une station telemesure - asynchrone
+//GET - Récupérer tout les capteurs d'une station telemesure - asynchrone
 exports.getAllSensorsOfOneStation = async (req, res) => {
+  const stationName = req.params.stationName;
+
+  if (!allowedStations.includes(stationName)) {
+    return res.status(400).json({ error: "Accès à la station non autorisé" });
+  }
+
   try {
-    const result = await db.query("");
+    const query = `
+      SELECT capteur, desc_capteur 
+      FROM referentiels.all_tables_list 
+      WHERE station = $1
+    `;
+    const result = await db.query(query, [stationName]);
     res.json(result.rows);
   } catch (err) {
     console.error(err);

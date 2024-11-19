@@ -13,7 +13,7 @@ router.get(
 
 //GET - Récupérer tous les capteurs d'une station telemesure
 router.get(
-  "/stations/:id/sensors",
+  "/stations/:stationName/sensors",
   telemesuresController.getAllSensorsOfOneStation
 );
 

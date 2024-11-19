@@ -19,15 +19,15 @@
 
   <!-- on affiche la sélection d'emplacements uniquement après la sélection d'un système de données -->
   <div *ngIf="isFormSubmitted && isDataSystemSelected" class="form-group">
-    <label for="emplacement" class="labels">Emplacements</label>
+    <label for="libelle_station" class="labels">Emplacements</label>
     <select
       class="form-control"
-      id="emplacement"
+      id="libelle_station"
       [(ngModel)]="selectedStations"
       multiple
     >
-      <option *ngFor="let station of stations" [value]="station.emplacement">
-        {{ station.emplacement }}
+      <option *ngFor="let station of stations" [value]="station.libelle_station">
+        {{ station.libelle_station }}
       </option>
     </select>
     <div class="button-container">

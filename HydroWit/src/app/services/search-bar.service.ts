@@ -62,10 +62,10 @@ export class SearchBarService {
     }
     if (this.selectedDataSystem) {
       return this.stations.filter((station) =>
-        station.systeme_donnes === this.selectedDataSystem);
+        station.source_schema === this.selectedDataSystem);
     }
     return this.stations.filter((station) =>
-      this.selectedStations.includes(station.emplacement)
+      this.selectedStations.includes(station.libelle_station)
     );
   }
 

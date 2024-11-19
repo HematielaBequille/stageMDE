@@ -6,7 +6,7 @@ const Sensor = require("../models/allModel");
 exports.getAllStations = async (req, res) => {
   try {
     const result = await db.query(
-      "SELECT station, libelle_station FROM referentiels.all_stations_list"
+      "SELECT source_schema, station, libelle_station FROM referentiels.all_stations_list"
     );
     res.json(result.rows);
   } catch (err) {

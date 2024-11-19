@@ -78,9 +78,48 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.selectedDataSystem) {
+    if (this.selectedDataSystem === 'Météorologie') {
       this.isDataSystemSelected = true;
-      console.log('Système de données sélectionné :', this.selectedDataSystem);
+      this.hydrowitService.getAllMeteorologieStations().subscribe(
+        (stations: Station[]) => {
+          console.log('stations récupérées :', stations);
+          this.stations = stations;
+        },
+        (error) => {
+          console.error(
+            'Erreur lors de la récupération des stations météorologiques :',
+            error
+          );
+        }
+      );
+    } else if (this.selectedDataSystem === 'Télémesures') {
+      this.isDataSystemSelected = true;
+      this.hydrowitService.getAllTelemesuresStations().subscribe(
+        (stations: Station[]) => {
+          console.log('stations récupérées :', stations);
+          this.stations = stations;
+        },
+        (error) => {
+          console.error(
+            'Erreur lors de la récupération des stations télémesures :',
+            error
+          );
+        }
+      );
+    } else if (this.selectedDataSystem === 'Maréegraphe') {
+      this.isDataSystemSelected = true;
+      this.hydrowitService.getAllMareegrapheStations().subscribe(
+        (stations: Station[]) => {
+          console.log('stations récupérées :', stations);
+          this.stations = stations;
+        },
+        (error) => {
+          console.error(
+            'Erreur lors de la récupération des stations maréegraphes :',
+            error
+          );
+        }
+      );
     }
     if (this.selectedStations.length > 0) {
       this.isStationsSelected = true;

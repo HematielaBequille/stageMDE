@@ -1,5 +1,5 @@
 const db = require("../db");
-const MeteorologieStation = require("../models/meteorologie.Model");
+const MeteorologieStation = require("../models/meteorologieModel");
 
 // GET - Récupérer toutes les stations météorologies - asynchrone
 exports.getAllMeteorologieStations = async (req, res) => {

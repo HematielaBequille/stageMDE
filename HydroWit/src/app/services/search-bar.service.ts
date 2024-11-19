@@ -29,6 +29,14 @@ export class SearchBarService {
     return this.dataSystems;
   }
 
+  /*getAllMeteorologieStations(): Station[] {
+    return this.stations;
+  }
+
+  getAllTelemesuresStations(): Station[] {
+    return this.stations;
+  }*/
+
   setStations(stations: Station[]): void {
     this.stations = stations;
     console.log('Stations mises à jour :', this.stations);

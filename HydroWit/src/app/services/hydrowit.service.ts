@@ -29,6 +29,16 @@ export class HydrowitService {
 
   // GET - Récupérer toutes les stations telemesures
   getAllTelemesuresStations(): Observable<Station[]> {
-    return this.http.get<Station[]>(`${this.apiUrl}/stations`);
+    return this.http.get<Station[]>(`${this.apiUrl}/field/telemesures/stations`);
+  }
+
+  // GET - Récupérer toutes les stations meteorologies
+  getAllMeteorologieStations(): Observable<Station[]> {
+    return this.http.get<Station[]>(`${this.apiUrl}/field/meteorologie/stations`);
+  }
+
+  // GET - Récupérer toutes les stations mareegraphes
+  getAllMareegrapheStations(): Observable<Station[]> {
+    return this.http.get<Station[]>(`${this.apiUrl}/field/mareegraphe/stations`);
   }
 }

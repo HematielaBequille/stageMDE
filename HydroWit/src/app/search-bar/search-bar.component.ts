@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Observable } from 'rxjs';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
 import { DataSystem } from '../models/dataSystem.model';
@@ -77,57 +78,57 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
+  fetchStations(dataSystemType: string): void {
+    let stationsObservable: Observable<Station[]>;
+
+    switch (dataSystemType) {
+      case 'meteorologie':
+        stationsObservable = this.hydrowitService.getAllMeteorologieStations();
+        break;
+      case 'telemesures':
+        stationsObservable = this.hydrowitService.getAllTelemesuresStations();
+        break;
+      case 'mareegraphe':
+        stationsObservable = this.hydrowitService.getAllMareegrapheStations();
+        break;
+      default:
+        stationsObservable = this.hydrowitService.getAllStations();
+        break;
+    }
+    stationsObservable.subscribe(
+      (stations: Station[]) => {
+        console.log(`${dataSystemType} stations récupérées :`, stations);
+        this.stations = stations;
+      },
+      (error) => {
+        console.error(
+          `Erreur lors de la récupération des stations ${dataSystemType} :`,
+          error
+        );
+      }
+    );
+  }
+
   onSubmit(): void {
+    // on remet à zéro
+    this.selectedStations = [];
+    this.selectedSensors = [];
+    this.isStationsSelected = false;
+    this.isFormSubmitted = false;
+
     if (this.selectedDataSystem === 'Météorologie') {
       this.isDataSystemSelected = true;
-      this.hydrowitService.getAllMeteorologieStations().subscribe(
-        (stations: Station[]) => {
-          console.log('stations récupérées :', stations);
-          this.stations = stations;
-        },
-        (error) => {
-          console.error(
-            'Erreur lors de la récupération des stations météorologiques :',
-            error
-          );
-        }
-      );
+      this.fetchStations('meteorologie');
     } else if (this.selectedDataSystem === 'Télémesures') {
       this.isDataSystemSelected = true;
-      this.hydrowitService.getAllTelemesuresStations().subscribe(
-        (stations: Station[]) => {
-          console.log('stations récupérées :', stations);
-          this.stations = stations;
-        },
-        (error) => {
-          console.error(
-            'Erreur lors de la récupération des stations télémesures :',
-            error
-          );
-        }
-      );
+      this.fetchStations('telemesures');
     } else if (this.selectedDataSystem === 'Maréegraphe') {
       this.isDataSystemSelected = true;
-      this.hydrowitService.getAllMareegrapheStations().subscribe(
-        (stations: Station[]) => {
-          console.log('stations récupérées :', stations);
-          this.stations = stations;
-        },
-        (error) => {
-          console.error(
-            'Erreur lors de la récupération des stations maréegraphes :',
-            error
-          );
-        }
-      );
-    }
-    if (this.selectedStations.length > 0) {
-      this.isStationsSelected = true;
-      console.log('Stations sélectionnées :', this.selectedStations);
+      this.fetchStations('mareegraphe');
     }
 
     this.isFormSubmitted = true;
-    //console.log('Stations sélectionnées :', this.selectedStations);
+    console.log('Stations sélectionnées :', this.selectedStations);
     console.log('Capteurs sélectionnés :', this.selectedSensors);
     this.searchBarService.updateSelections(
       this.selectedStations,
@@ -139,6 +140,11 @@ export class SearchBarComponent implements OnInit {
     this.selectedDataSystem = dataSystemName;
     this.searchBarService.selectedDataSystem = this.selectedDataSystem; // Mettez à jour dans le service
     this.stations = this.searchBarService.getFilteredStations(); // Actualisez les stations affichées
-    //console.log('Système de données sélectionné :', this.selectedDataSystem);
+
+    // on remet à zéro
+    this.selectedStations = [];
+    this.selectedSensors = [];
+    this.isStationsSelected = false;
+    this.isFormSubmitted = false;
   }
 }

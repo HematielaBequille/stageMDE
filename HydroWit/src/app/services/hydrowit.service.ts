@@ -12,15 +12,23 @@ export class HydrowitService {
 
   constructor(private http: HttpClient) {}
 
+  // GET - Récupérer tous les utilisateurs
   getAllUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/users`);
   }
 
+  // GET - Récupérer toutes les stations
   getAllStations(): Observable<Station[]> {
     return this.http.get<Station[]>(`${this.apiUrl}/field/all/stations`);
   }
 
+  // GET - Récupérer tout les capteurs
   getAllSensors(): Observable<Sensor[]> {
     return this.http.get<Sensor[]>(`${this.apiUrl}/field/all/sensors`);
+  }
+
+  // GET - Récupérer toutes les stations telemesures
+  getAllTelemesuresStations(): Observable<Station[]> {
+    return this.http.get<Station[]>(`${this.apiUrl}/stations`);
   }
 }

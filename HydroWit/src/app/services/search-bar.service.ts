@@ -19,6 +19,7 @@ export class SearchBarService {
     { nom: 'Maréegraphe' },
     { nom: 'Météorologie' },
   ];
+  selectedDataSystem: string = '';
   submit: EventEmitter<{ stations: string[]; sensors: number[] }> =
     new EventEmitter();
 
@@ -58,6 +59,10 @@ export class SearchBarService {
     }
     if (this.selectedStations.length === 0) {
       return this.stations;
+    }
+    if (this.selectedDataSystem) {
+      return this.stations.filter((station) =>
+        station.systeme_donnes === this.selectedDataSystem);
     }
     return this.stations.filter((station) =>
       this.selectedStations.includes(station.emplacement)

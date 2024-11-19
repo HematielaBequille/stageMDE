@@ -6,7 +6,7 @@ const Sensor = require("../models/allModel");
 exports.getAllStations = async (req, res) => {
   try {
     const result = await db.query(
-      "SELECT id_atm, emplacement, secteur, activite, ref_alti, cote_cmh, type_atm, liste_atm, interventions_sur_atm FROM referentiels.r_ouvrage_atm"
+      "SELECT station, libelle_station FROM referentiels.all_stations_list"
     );
     res.json(result.rows);
   } catch (err) {
@@ -21,7 +21,7 @@ exports.getAllStations = async (req, res) => {
 exports.getAllSensors = async (req, res) => {
   try {
     const result = await db.query(
-      "SELECT id_capteur, nom_capteur, unite_capteur, desc_capteur, libelle_capteur, nom_capteur_data, type_station FROM referentiels.r_code_capteur"
+      ""
     );
     res.json(result.rows);
   } catch (err) {

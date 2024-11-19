@@ -98,6 +98,8 @@ export class SearchBarComponent implements OnInit {
 
   onDataSystemChange(dataSystemName: string): void {
     this.selectedDataSystem = dataSystemName;
+    this.searchBarService.selectedDataSystem = this.selectedDataSystem; // Mettez à jour dans le service
+    this.stations = this.searchBarService.getFilteredStations(); // Actualisez les stations affichées
     //console.log('Système de données sélectionné :', this.selectedDataSystem);
   }
 }

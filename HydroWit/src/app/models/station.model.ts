@@ -1,4 +1,5 @@
 export class Station {
+    systeme_donnes!: string;
     id_atm!: number;
     emplacement!: string;
     secteur!: string;

@@ -15,11 +15,6 @@ export class SearchBarService {
   private sensors: Sensor[] = [];
   private selectedSensors: string[] = [];
   displayedColumns2: string[] = ['id_capteur', 'nom_capteur'];
-  private dataSystems: DataSystem[] = [
-    { nom: 'Télémesures' },
-    { nom: 'Maréegraphe' },
-    { nom: 'Météorologie' },
-  ];
   private mareegrapheSensors: MareegrapheSensor[] = [];
   private meteorologieSensors: MeteorologieSensor[] = [];
   selectedDataSystem: string = '';
@@ -28,9 +23,7 @@ export class SearchBarService {
 
   constructor(private HydrowitService: HydrowitService) {}
 
-  getDataSystems(): DataSystem[] {
-    return this.dataSystems;
-  }
+
 
   setStations(stations: Station[]): void {
     this.stations = stations;

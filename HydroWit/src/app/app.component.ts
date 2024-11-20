@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchBarComponent } from './multi-step-form/multiple-step-form.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 

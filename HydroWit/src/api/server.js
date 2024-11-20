@@ -8,6 +8,7 @@ const allRoutes = require("./routes/allRoutes");
 const telemesuresRoutes = require("./routes/telemesuresRoutes");
 const meteorologieRoutes = require("./routes/meteorologieRoutes");
 const mareegrapheRoutes = require("./routes/mareegrapheRoutes");
+const dataSystemRoutes = require("./routes/dataSystemRoutes");
 
 const app = express();
 const port = 3000;
@@ -26,6 +27,7 @@ app.use("/field/all", allRoutes);
 app.use("/field/telemesures", telemesuresRoutes);
 app.use("/field/meteorologie", meteorologieRoutes);
 app.use("/field/mareegraphe", mareegrapheRoutes);
+app.use("/field/datasystems", dataSystemRoutes);
 
 // Démarrer le serveur
 app.listen(port, () => {

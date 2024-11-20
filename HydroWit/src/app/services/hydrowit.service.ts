@@ -55,4 +55,14 @@ export class HydrowitService {
       `${this.apiUrl}/field/meteorologie/sensors`
     );
   }
+
+  // GET - TODO
+  getStationsBySystem(dataSystemId: string): Observable<Station[]> {
+    return this.http.get<Station[]>(`${this.apiUrl}/field/${dataSystemId}/stations`);
+  }
+
+  // POST - TODO
+  getSensorsByStations(stationIds: string[]): Observable<Sensor[]> {
+    return this.http.post<Sensor[]>(`${this.apiUrl}/sensors/by-stations`, { stationIds });
+  }
 }

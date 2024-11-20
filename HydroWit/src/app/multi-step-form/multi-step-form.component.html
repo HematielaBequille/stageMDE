@@ -1,5 +1,29 @@
-<div class="form-group-container">
-  <!-- on affiche la sélection d'un système de données -->
+<div>
+  <app-step1
+    *ngIf="currentStep === 1"
+    [formData]="formData"
+    (dataChange)="formData = $event"
+  ></app-step1>
+  <app-step2
+    *ngIf="currentStep === 2"
+    [formData]="formData"
+    (dataChange)="formData = $event"
+  ></app-step2>
+  <app-step3
+    *ngIf="currentStep === 3"
+    [formData]="formData"
+    (dataChange)="formData = $event"
+  ></app-step3>
+
+  <div>
+    <button *ngIf="currentStep > 1" (click)="previousStep()">Previous</button>
+    <button *ngIf="currentStep < 3" (click)="nextStep()">Next</button>
+    <button *ngIf="currentStep === 3" (click)="submitForm()">Submit</button>
+  </div>
+</div>
+
+<!--<div class="form-group-container">
+   on affiche la sélection d'un système de données
   <div class="form-group">
     <label for="dataSystem" class="labels">Système de données</label>
     <div *ngFor="let dataSystem of dataSystems">
@@ -17,7 +41,7 @@
     </div>
   </div>
 
-  <!-- on affiche la sélection d'emplacements uniquement après la sélection d'un système de données -->
+   on affiche la sélection d'emplacements uniquement après la sélection d'un système de données 
   <div *ngIf="isFormSubmitted && isDataSystemSelected" class="form-group">
     <label for="libelle_station" class="labels">Emplacements</label>
     <select
@@ -35,7 +59,7 @@
     </div>
   </div>
 
-  <!-- on affiche la sélection de capteurs uniquement après la sélection d'emplacements -->
+   on affiche la sélection de capteurs uniquement après la sélection d'emplacements 
   <div *ngIf="isFormSubmitted && isStationsSelected" class="form-group">
     <label for="sensor" class="labels">Capteurs</label>
     <select
@@ -52,4 +76,4 @@
       <button class="btn btn-primary" (click)="onSubmit()">Envoyer</button>
     </div>
   </div>
-</div>
+</div>-->

@@ -9,7 +9,7 @@ import { Module } from '../models/module.model';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
 import { HeaderComponent } from '../header/header.component';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { SearchBarComponent } from '../multi-step-form/multiple-step-form.component';
 
 @Component({
   selector: 'app-data-module',
@@ -48,19 +48,19 @@ export class DataModuleComponent implements OnInit {
       }
     }
 
-    this.stations = this.searchBarService.getFilteredStations();
-    this.sensors = this.searchBarService.getFilteredSensors();
-    this.displayedColumns = ['id_atm', 'emplacement'];
-    this.displayedColumns2 = ['id_capteur', 'nom_capteur'];
+    //this.stations = this.searchBarService.getFilteredStations();
+    //this.sensors = this.searchBarService.getFilteredSensors();
+    //this.displayedColumns = ['id_atm', 'emplacement'];
+    //this.displayedColumns2 = ['id_capteur', 'nom_capteur'];
 
     // Abonnement aux changements dans les stations et capteurs filtrés
-    this.searchBarService.submit.subscribe(() => {
+    /*this.searchBarService.submit.subscribe(() => {
       console.log('Événement reçu dans DataModuleComponent');
       this.stations = this.searchBarService.getFilteredStations();
       this.sensors = this.searchBarService.getFilteredSensors();
       console.log('Stations filtrées :', this.stations);
       console.log('Capteurs filtrés :', this.sensors);
       this.isFormSubmitted = true;
-    });
+    });*/
   }
 }

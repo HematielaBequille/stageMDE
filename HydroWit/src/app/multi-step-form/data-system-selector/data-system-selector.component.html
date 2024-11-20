@@ -1,0 +1,13 @@
+<h2>Choisissez un système de données</h2>
+<div *ngFor="let system of dataSystems">
+  <label>
+    <input
+      type="radio"
+      name="dataSystem"
+      [value]="system.id"
+      [(ngModel)]="selectedDataSystem"
+      (change)="onDataChange()"
+    />
+    {{ system.name }}
+  </label>
+</div>

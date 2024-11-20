@@ -1,3 +1,4 @@
-export class DataSystem {
-    nom!: string;
+export interface DataSystem {
+    id: string;
+    name: string;
 }

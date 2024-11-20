@@ -1,0 +1,10 @@
+<div>
+  <h2>Capteurs</h2>
+  <label for="selectedSensors">Capteurs disponibles:</label>
+  <input
+    [(ngModel)]="formData.selectedSensors"
+    id="selectedSensors"
+    name="selectedSensors"
+  />
+  <button (click)="onDataChange()">Submit</button>
+</div>

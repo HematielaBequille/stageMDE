@@ -122,10 +122,10 @@ export class SearchBarComponent implements OnInit {
       this.stations = this.searchBarService.getFilteredStations();
     });
 
-    this.hydrowitService.getAllSensors().subscribe((data: Sensor[]) => {
+    /*this.hydrowitService.getAllSensors().subscribe((data: Sensor[]) => {
       this.searchBarService.setSensors(data);
       this.sensors = this.searchBarService.getFilteredSensors();
-    });
+    });*/
   }
 
   onSubmit(): void {

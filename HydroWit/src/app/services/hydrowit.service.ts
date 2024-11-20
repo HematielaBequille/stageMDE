@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Sensor } from '../models/sensor.model';
-import { MareegrapheSensor } from '../models/mareegrapheSensor.model';
-import { MeteorologieSensor } from '../models/meteorologieSensor.model';
+import { MareegrapheSensor, MeteorologieSensor } from '../models/sensor.model';
 import { Station } from '../models/station.model';
 
 @Injectable({

@@ -2,8 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
 import { DataSystem } from '../models/dataSystem.model';
-import { MareegrapheSensor } from '../models/mareegrapheSensor.model';
-import { MeteorologieSensor } from '../models/meteorologieSensor.model';
+import { MareegrapheSensor, MeteorologieSensor } from '../models/sensor.model';
 import { HydrowitService } from './hydrowit.service';
 
 @Injectable({
@@ -74,7 +73,7 @@ export class SearchBarService {
     );
   }
 
-  getFilteredSensors(): Sensor[] {
+  getMeteorologieFilteredSensors(): MeteorologieSensor[] {
     if (!this.sensors || this.sensors.length === 0) {
       return [];
     }

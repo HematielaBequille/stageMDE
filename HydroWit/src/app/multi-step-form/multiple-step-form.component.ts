@@ -36,7 +36,7 @@ import { DataSystemSelectorComponent } from './data-system-selector/data-system-
 import { StationSelectorComponent } from './station-selector/station-selector.component';
 
 @Component({
-  selector: 'app-search-bar',
+  selector: 'app-multiple-step-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -52,8 +52,8 @@ import { StationSelectorComponent } from './station-selector/station-selector.co
     DataSystemSelectorComponent,
     StationSelectorComponent,
   ],
-  templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss',
+  templateUrl: './multiple-step-form.component.html',
+  styleUrl: './multiple-step-form.component.scss',
 })
 export class MultiStepFormComponent implements OnInit {
   formData: {} = {

@@ -1,19 +1,19 @@
 <div>
-  <app-step1
+  <app-data-system-selector
     *ngIf="currentStep === 1"
     [formData]="formData"
     (dataChange)="formData = $event"
-  ></app-step1>
-  <app-step2
+  ></app-data-system-selector>
+  <app-station-selector
     *ngIf="currentStep === 2"
     [formData]="formData"
     (dataChange)="formData = $event"
-  ></app-step2>
-  <app-step3
+  ></app-station-selector>
+  <app-sensor-selector
     *ngIf="currentStep === 3"
     [formData]="formData"
     (dataChange)="formData = $event"
-  ></app-step3>
+  ></app-sensor-selector>
 
   <div>
     <button *ngIf="currentStep > 1" (click)="previousStep()">Previous</button>

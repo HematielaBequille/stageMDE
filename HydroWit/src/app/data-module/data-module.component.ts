@@ -9,12 +9,12 @@ import { Module } from '../models/module.model';
 import { Station } from '../models/station.model';
 import { Sensor } from '../models/sensor.model';
 import { HeaderComponent } from '../header/header.component';
-import { SearchBarComponent } from '../multi-step-form/multiple-step-form.component';
+import { MultiStepFormComponent } from '../multi-step-form/multiple-step-form.component';
 
 @Component({
   selector: 'app-data-module',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, MatTableModule, SearchBarComponent],
+  imports: [HeaderComponent, CommonModule, MatTableModule, MultiStepFormComponent],
   templateUrl: './data-module.component.html',
   styleUrl: './data-module.component.scss',
 })

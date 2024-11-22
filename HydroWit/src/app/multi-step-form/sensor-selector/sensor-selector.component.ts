@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { HydrowitService } from '../../services/hydrowit.service';
 import { Sensor } from '../../models/sensor.model';
 
-
 @Component({
   selector: 'app-sensor-selector',
   standalone: true,
@@ -12,12 +11,23 @@ import { Sensor } from '../../models/sensor.model';
   styleUrl: './sensor-selector.component.scss',
 })
 export class SensorSelectorComponent {
+  sensors: Sensor[] = [];
+  selectedSensors: string[] = [];
+  selectedStations: string[] = [];
+
   @Input() formData: any;
   @Output() dataChange = new EventEmitter<any>();
 
-  constructor(private hydrowitService: HydrowitService) { }
+  constructor(private hydrowitService: HydrowitService) {}
+
+  ngOnInit() {}
 
   onDataChange() {
-    this.dataChange.emit(this.formData);
+    //this.dataChange.emit(this.formData);
+    this.hydrowitService
+      .getSensorsByStations(this.selectedStations)
+      .subscribe((data: Sensor[]) => {
+        this.sensors = data;
+      });
   }
 }

@@ -7,13 +7,12 @@ import { DataSystemSelectorComponent } from '../data-system-selector/data-system
 @Component({
   selector: 'app-station-selector',
   standalone: true,
-  imports: [
-    FormsModule, DataSystemSelectorComponent
-  ],
+  imports: [FormsModule, DataSystemSelectorComponent],
   templateUrl: './station-selector.component.html',
   styleUrl: './station-selector.component.scss',
 })
 export class StationSelectorComponent {
+  selectedDataSystem: string = '';
   stations: Station[] = [];
   selectedStations: string[] = [];
 
@@ -23,6 +22,11 @@ export class StationSelectorComponent {
   constructor(private hydrowitService: HydrowitService) {}
 
   onDataChange() {
-    this.dataChange.emit(this.formData);
+    //this.dataChange.emit(this.formData);
+    this.hydrowitService
+      .getStationsBySystem(this.selectedDataSystem)
+      .subscribe((data: Station[]) => {
+        this.stations = data;
+      });
   }
 }

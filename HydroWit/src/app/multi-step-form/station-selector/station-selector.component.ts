@@ -12,23 +12,24 @@ import { DataSystemSelectorComponent } from '../data-system-selector/data-system
   styleUrl: './station-selector.component.scss',
 })
 export class StationSelectorComponent {
-  selectedDataSystem: string = '';
+  //selectedDataSystem: string = '';
   stations: Station[] = [];
-  selectedStations: string[] = [];
+  selectedStationsValue: string[] = [];
 
-  @Input() formData: any;
-  @Output() dataChange = new EventEmitter<any>();
+  @Input() selectedDataSystem: string = '';
+  @Output() selectedStations = new EventEmitter<any>();
 
   constructor(private hydrowitService: HydrowitService) {}
 
+  ngOnInit() {}
+  
   onDataChange() {
-    //this.dataChange.emit(this.formData);
-    //console.log(this.selectedDataSystem);
     this.hydrowitService
       .getStationsBySystem(this.selectedDataSystem)
       .subscribe((data: Station[]) => {
         this.stations = data;
       });
-      //console.log(this.stations);
+    console.log(this.selectedDataSystem, this.stations);
+    this.selectedStations.emit(this.selectedStationsValue);
   }
 }

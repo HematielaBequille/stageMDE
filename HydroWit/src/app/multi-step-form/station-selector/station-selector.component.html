@@ -1,11 +1,10 @@
 <div>
   <h2>Stations disponibles</h2>
-  <label for="selectedStations">Stations disponibles:</label>
+  <label for="selectedStationsValue">Stations disponibles:</label>
   <input
-  (selectedDataSystem) = ($event)
-    
-    id="selectedStations"
-    name="selectedStations"
+    (selectedDataSystem)="($event)"
+    id="selectedStationsValue"
+    name="selectedStationsValue"
   />
   <!--{{ stations.libelle_station }}-->
   <button (click)="onDataChange()">Suivant</button>

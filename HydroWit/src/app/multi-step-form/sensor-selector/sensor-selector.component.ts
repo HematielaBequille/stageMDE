@@ -12,22 +12,22 @@ import { Sensor } from '../../models/sensor.model';
 })
 export class SensorSelectorComponent {
   sensors: Sensor[] = [];
-  selectedSensors: string[] = [];
-  selectedStations: string[] = [];
+  selectedSensorsValue: string[] = [];
+  //selectedStations: string[] = [];
 
-  @Input() formData: any;
-  @Output() dataChange = new EventEmitter<any>();
+  @Input() selectedStations: any;
+  @Output() selectedSensors = new EventEmitter<any>();
 
   constructor(private hydrowitService: HydrowitService) {}
 
   ngOnInit() {}
 
   onDataChange() {
-    //this.dataChange.emit(this.formData);
     this.hydrowitService
       .getSensorsByStations(this.selectedStations)
       .subscribe((data: Sensor[]) => {
         this.sensors = data;
       });
+    this.selectedSensors.emit(this.selectedSensorsValue);
   }
 }

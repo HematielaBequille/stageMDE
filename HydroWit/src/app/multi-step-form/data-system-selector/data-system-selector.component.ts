@@ -15,10 +15,7 @@ export class DataSystemSelectorComponent {
   dataSystems: DataSystem[] = [];
   selectedDataSystemValue: string = '';
 
-  @Input() formData: any;
-  //@Output() dataChange = new EventEmitter<any>();
   @Output() selectedDataSystem = new EventEmitter<string>();
-  
 
   constructor(private dataSystemService: DataSystemService) {}
 
@@ -27,7 +24,10 @@ export class DataSystemSelectorComponent {
   }
 
   onDataChange() {
-    //console.log('Système de données sélectionné :', this.selectedDataSystem);
+    console.log(
+      'Système de données sélectionné :',
+      this.selectedDataSystemValue
+    );
     this.selectedDataSystem.emit(this.selectedDataSystemValue);
   }
 }

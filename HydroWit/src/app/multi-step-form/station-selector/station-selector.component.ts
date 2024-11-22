@@ -21,8 +21,6 @@ export class StationSelectorComponent {
 
   constructor(private hydrowitService: HydrowitService) {}
 
-  ngOnInit() {}
-  
   onDataChange() {
     this.hydrowitService
       .getStationsBySystem(this.selectedDataSystem)

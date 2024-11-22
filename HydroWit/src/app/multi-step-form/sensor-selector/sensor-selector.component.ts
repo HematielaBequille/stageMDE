@@ -20,8 +20,6 @@ export class SensorSelectorComponent {
 
   constructor(private hydrowitService: HydrowitService) {}
 
-  ngOnInit() {}
-
   onDataChange() {
     this.hydrowitService
       .getSensorsByStations(this.selectedStations)

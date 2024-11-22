@@ -6,8 +6,8 @@ import { DataSystem } from '../models/dataSystem.model';
 })
 export class DataSystemService {
   private dataSystems: DataSystem[] = [
-    { id: 'telemesures', name: 'Télémesures' },
-    { id: 'mareegraphe', name: 'Maréegraphe' },
+    { id: 'telemesure', name: 'Télémesures' },
+    { id: 'maregraphe', name: 'Maréegraphe' },
     { id: 'meteorologie', name: 'Météorologie' },
   ];
 

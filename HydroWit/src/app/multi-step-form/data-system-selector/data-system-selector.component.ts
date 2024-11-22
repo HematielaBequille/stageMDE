@@ -13,10 +13,12 @@ import { DataSystem } from '../../models/dataSystem.model';
 })
 export class DataSystemSelectorComponent {
   dataSystems: DataSystem[] = [];
-  selectedDataSystem: string = '';
+  selectedDataSystemValue: string = '';
 
   @Input() formData: any;
-  @Output() dataChange = new EventEmitter<any>();
+  //@Output() dataChange = new EventEmitter<any>();
+  @Output() selectedDataSystem = new EventEmitter<string>();
+  
 
   constructor(private dataSystemService: DataSystemService) {}
 
@@ -25,7 +27,7 @@ export class DataSystemSelectorComponent {
   }
 
   onDataChange() {
-    console.log('Système de données sélectionné :', this.selectedDataSystem);
-    this.dataChange.emit(this.formData);
+    //console.log('Système de données sélectionné :', this.selectedDataSystem);
+    this.selectedDataSystem.emit(this.selectedDataSystemValue);
   }
 }

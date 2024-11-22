@@ -58,7 +58,7 @@ export class HydrowitService {
 
   // GET - TODO
   getStationsBySystem(dataSystemId: string): Observable<Station[]> {
-    return this.http.get<Station[]>(`${this.apiUrl}/field/${dataSystemId}/stations`);
+    return this.http.get<Station[]>(`${this.apiUrl}/field/datasystems/${dataSystemId}/stations`);
   }
 
   // POST - TODO

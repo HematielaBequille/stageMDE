@@ -1,15 +1,15 @@
 <div>
 <h2>Choisissez un système de données</h2>
-<div *ngFor="let system of dataSystems">
+<div *ngFor="let dataSystem of dataSystems">
   <label>
     <input
       type="radio"
       name="dataSystem"
-      [value]="system.id"
-      [(ngModel)]="selectedDataSystem"
+      [value]="dataSystem.id"
+      [(ngModel)]="selectedDataSystemValue"
       (change)="onDataChange()"
     />
-    {{ system.name }}
+    {{ dataSystem.name }}
   </label>
 </div>
 <button (click)="onDataChange()">Suivant</button>

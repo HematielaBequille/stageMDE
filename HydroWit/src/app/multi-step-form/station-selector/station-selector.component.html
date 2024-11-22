@@ -2,9 +2,13 @@
   <h2>Stations disponibles</h2>
   <label for="selectedStations">Stations disponibles:</label>
   <input
-    [(ngModel)]="selectedStations"
+  (selectedDataSystem) = ($event)
+    
     id="selectedStations"
     name="selectedStations"
   />
+  <!--{{ stations.libelle_station }}-->
   <button (click)="onDataChange()">Suivant</button>
 </div>
+
+<!-- [(ngModel)]="selectedStations" -->

@@ -23,10 +23,12 @@ export class StationSelectorComponent {
 
   onDataChange() {
     //this.dataChange.emit(this.formData);
+    //console.log(this.selectedDataSystem);
     this.hydrowitService
       .getStationsBySystem(this.selectedDataSystem)
       .subscribe((data: Station[]) => {
         this.stations = data;
       });
+      //console.log(this.stations);
   }
 }
